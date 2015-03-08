@@ -1,0 +1,23 @@
+{
+  "name": "Follow-Up",
+  "version": "1.0.0",
+  "description": "Church Follow-Up App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eunjoolee787/Follow-Up.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eunjoolee787/Follow-Up/issues"
+  },
+  "homepage": "https://github.com/eunjoolee787/Follow-Up",
+  "dependencies": {
+    "express": "^4.12.2",
+    "jade": "^1.9.2"
+  }
+}
