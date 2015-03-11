@@ -1,4 +1,4 @@
 {
   "port": 4000,
-  "mongo": "mongodb://follow-up:votreasure@ds033499.mongolab.com:33499/follow-up"
+  "mongo": "mongodb://prospect:votreasure@ds033499.mongolab.com:33499/follow-up"
 }
