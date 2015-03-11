@@ -1,12 +1,20 @@
-var express = require ('express');
-var bodyParser = require('body-parser');
-var path = require ('path');
-var app = express();
-var config = require('../config');
+var express = require ('express');//Require express
+var bodyParser = require('body-parser');//Parses all body as string
+// var path = require ('path');
+var mongoose = require('mongoose');
+var methodOverride = require('method-override');//override the method of a request 
+var app = express();//Creates a new express instance
 
-app.use(express.static(__dirname, 'views'));
-app.set('view engine', 'jade');
+var config = require('./config');
+var CONNECTION_STRING = config.mongo;
+
+
+//MIDDLEWARE AREA
+app.use(express.static(__dirname, 'views'));//Tell express where to find static files
+app.set('view engine', 'jade');//Tell server we're using .jade files instead of .html files
 app.use(bodyParser.urlencoded({extended: true}));
+
+mongoose.connect(CONNECTION_STRING);
 
 app.get('/', function (req, res) {
   res.render('index');
@@ -24,6 +32,6 @@ app.post('/form', function (req, res) {
 });
 
 module.exports.app = app;
-module.exports = config;
+// module.exports = config;
 
-app.listen(3000);
+app.listen(4000);
