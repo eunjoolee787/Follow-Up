@@ -1,4 +1,4 @@
-var app = angular.module("FollowUpApp", []);
+var app = angular.module("FollowUpApp", ['ui.date']);
 
 app.controller("AccountCtrl", function ($http) {
   var app = this;

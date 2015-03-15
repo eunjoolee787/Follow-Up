@@ -37,7 +37,8 @@ app.post('/form', function (req, res) {
     firstnamemale: req.body.firstnamemale,
     lastnamemale: req.body.lastnamemale,
     firstnamefemale: req.body.firstnamefemale,
-    lastnamefemale: req.body.lastnamefemale
+    lastnamefemale: req.body.lastnamefemale,
+    birthday: req.body.birthday
   });
   prospect.save(function (err, prospect) {
     if (err) { return next(err); }
