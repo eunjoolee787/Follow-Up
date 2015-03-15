@@ -38,7 +38,8 @@ app.post('/form', function (req, res) {
     lastnamemale: req.body.lastnamemale,
     firstnamefemale: req.body.firstnamefemale,
     lastnamefemale: req.body.lastnamefemale,
-    birthday: req.body.birthday
+    birthday: req.body.birthday,
+    age: req.body.age
   });
   prospect.save(function (err, prospect) {
     if (err) { return next(err); }

@@ -5,7 +5,8 @@ var prospectSchema = mongoose.Schema({
   lastnamemale: String,
   firstnamefemale: String,
   lastnamefemale: String,
-  birthday: Date
+  birthday: Date,
+  age: String
 });
 
 var Prospect = mongoose.model('Prospect', prospectSchema);
