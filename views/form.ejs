@@ -6,8 +6,10 @@
 </head>
 <body ng-app="FollowUpApp" ng-controller="AccountCtrl as app">
 
-<input type="text" ng-model="app.person.firstnamemale"/>
-<input type="text" ng-model="app.person.lastnamemale"/>
+<input type="text", placeholder="first name male" ng-model="app.person.firstnamemale"/>
+<input type="text", placeholder="last name male" ng-model="app.person.lastnamemale"/>
+<input type="text", placeholder="first name female" ng-model="app.person.firstnamefemale"/>
+<input type="text", placeholder="last name female" ng-model="app.person.lastnamefemale"/>
 <input type="button" value="save" ng-click="app.addPerson(app.person)"/>
 
 <!--   <h1>hello</h1> -->

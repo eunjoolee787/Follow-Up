@@ -35,7 +35,9 @@ app.post('/form', function (req, res) {
   console.log(req.body);
   var prospect = new Prospect({
     firstnamemale: req.body.firstnamemale,
-    lastnamemale: req.body.lastnamemale
+    lastnamemale: req.body.lastnamemale,
+    firstnamefemale: req.body.firstnamefemale,
+    lastnamefemale: req.body.lastnamefemale
   });
   prospect.save(function (err, prospect) {
     if (err) { return next(err); }
