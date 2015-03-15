@@ -15,9 +15,20 @@
 <label for="birthday">birthday</label>
 <input type="text", placeholder="birthday" ng-model="app.person.birthday" ui-date/>
 
-<label for="age">age</label>
 <input type="text", placeholder="age" ng-model="app.person.age"/>
 
+<input type="text", placeholder="street" ng-model="app.person.street"/>
+<input type="text", placeholder="city" ng-model="app.person.city"/>
+<input type="text", placeholder="state" ng-model="app.person.state"/>
+<input type="text", placeholder="zip" ng-model="app.person.zip"/>
+
+<!-- TO DO -->
+<input type="tel", placeholder="tel" ng-model="app.person.tel">
+
+
+
+
+<!-- SAVE BUTTON -->
 <input type="button" value="save" ng-click="app.addPerson(app.person)"/>
 
 <!--   <h1>hello</h1> -->

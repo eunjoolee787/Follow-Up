@@ -39,7 +39,12 @@ app.post('/form', function (req, res) {
     firstnamefemale: req.body.firstnamefemale,
     lastnamefemale: req.body.lastnamefemale,
     birthday: req.body.birthday,
-    age: req.body.age
+    age: req.body.age, 
+    street: req.body.street,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    tel: req.body.tel
   });
   prospect.save(function (err, prospect) {
     if (err) { return next(err); }
