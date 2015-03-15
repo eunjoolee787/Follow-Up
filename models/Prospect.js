@@ -11,7 +11,20 @@ var prospectSchema = mongoose.Schema({
   city: String,
   state: String,
   zip: String,
-  tel: String
+  tel: String,
+  facebook: String,
+  instagram: String,
+  email: String,
+  contactdate: Date,
+  contactperson: String,
+  nameofevent: String,
+  previouslysaved: String,
+  previouslybaptized: String,
+  joinchurch: String,
+  status: String,
+  lastcontactdate: Date,
+  createddate: Date,
+  modifieddate: Date
 });
 
 var Prospect = mongoose.model('Prospect', prospectSchema);

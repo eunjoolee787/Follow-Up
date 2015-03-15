@@ -44,9 +44,23 @@ app.post('/form', function (req, res) {
     city: req.body.city,
     state: req.body.state,
     zip: req.body.zip,
-    tel: req.body.tel
+    tel: req.body.tel,
+    facebook: req.body.facebook,
+    instagram: req.body.instagram,
+    // email: req.body.email,
+    contactdate: req.body.email,
+    contactperson: req.body.contactperson,
+    nameofevent: req.body.nameofevent,
+    previouslysaved: req.body.previouslysaved,
+    previouslybaptized: req.body.previouslybaptized,
+    joinchurch: req.body.joinchurch,
+    status: req.body.status,
+    lastcontactdate: req.body.lastcontactdate,
+    createddate: req.body.createddate,
+    modifieddate: req.body.modifieddate
   });
-  prospect.save(function (err, prospect) {
+
+  prospect.save(function (err, prospect, next) {
     if (err) { return next(err); }
       res.json(201, prospect);
     });

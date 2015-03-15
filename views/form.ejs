@@ -25,8 +25,31 @@
 <!-- TO DO -->
 <input type="tel", placeholder="tel" ng-model="app.person.tel">
 
+<input type="text", placeholder="facebook" ng-model="app.person.facebook"/>
+<input type="text", placeholder="instagram" ng-model="app.person.instagram"/>
 
+<!-- TO DO -->
+<!-- <input type="email", placeholder="email" ng-model="app.person.email"/> -->
 
+<label for="contactdate">Contact Date</label>
+<input type="text", placeholder="contact date" ng-model="app.person.contactdate" ui-date/>
+<input type="text", placeholder="contact person" ng-model="app.person.contactperson"/>
+<input type="text", placeholder="name of event" ng-model="app.person.nameofevent"/>
+
+<input type="text", placeholder="previously saved" ng-model="app.person.previouslysaved"/>
+<input type="text", placeholder="previously baptized" ng-model="app.person.previouslybaptized"/>
+
+<input type="text", placeholder="join church" ng-model="app.person.joinchurch"/>
+<input type="text", placeholder="status" ng-model="app.person.status"/>
+
+<label for="last contact date">last contact date</label>
+<input type="text", placeholder="last contact date" ng-model="app.person.lastcontactdate" ui-date/>
+
+<label for="created date">created date</label>
+<input type="text", placeholder="created date" ng-model="app.person.createddate" ui-date/>
+
+<label for="modified date">modified date</label>
+<input type="text", placeholder="modified date" ng-model="app.person.modifieddate" ui-date/>
 
 <!-- SAVE BUTTON -->
 <input type="button" value="save" ng-click="app.addPerson(app.person)"/>
