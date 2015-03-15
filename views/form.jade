@@ -8,12 +8,12 @@ block form
           type
             | text
           ng-model
-            | app.person.firstname
+            | app.person.firstnamemale
         input
           type 
             | text
           ng-model
-            | app.person.lastname
+            | app.person.lastnamemale
         input
           type
             | button
@@ -24,7 +24,7 @@ block form
           li
             ng-repeat
               | person in app.people
-                {{person.firstname}} {{person.lastname}}
+                {{person.firstnamemale}} {{person.lastnamemale}}
         //- form(action='/form', method='post')
         //-   div
         //-     label
