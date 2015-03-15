@@ -5,6 +5,7 @@ var mongoose = require('mongoose');//makes mongo easier to work with
 var methodOverride = require('method-override');//override the method of a request 
 var Prospect = require('./models/Prospect');
 var ejs = require('ejs');
+var cors = require('cors');
 var app = express();//Creates a new express instance
 
 var config = require('./config');
@@ -17,6 +18,7 @@ app.set('view engine', 'ejs');//Tell server we're using .jade files instead of .
 app.use(methodOverride('_method'));//use the methodOverride method
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cors());
 
 mongoose.connect(CONNECTION_STRING);
 

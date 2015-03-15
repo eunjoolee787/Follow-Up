@@ -21,8 +21,3 @@ app.controller("AccountCtrl", function ($http) {
 });
 
 
-var data = [
-  {"firstname": "Jeff", "lastname": "Winger"},
-  {"firstname": "Troy", "lastname": "Barnes"}
-];
-
