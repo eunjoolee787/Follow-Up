@@ -48,7 +48,7 @@ app.post('/form', function (req, res) {
     facebook: req.body.facebook,
     instagram: req.body.instagram,
     email: req.body.email,
-    // contactdate: req.body.contactdat,
+    contactdate: req.body.contactdate,
     contactperson: req.body.contactperson,
     nameofevent: req.body.nameofevent,
     previouslysaved: req.body.previouslysaved,
