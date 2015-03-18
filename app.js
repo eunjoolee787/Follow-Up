@@ -48,10 +48,8 @@ app.post('/form', function (req, res) {
 
   console.log(req.body);
   var prospect = new Prospect({
-    firstnamemale: req.body.firstnamemale,
-    lastnamemale: req.body.lastnamemale,
-    firstnamefemale: req.body.firstnamefemale,
-    lastnamefemale: req.body.lastnamefemale,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     birthday: req.body.birthday,
     age: req.body.age, 
     street: req.body.street,

@@ -1,10 +1,8 @@
 var mongoose = require('mongoose');
 
 var prospectSchema = mongoose.Schema({
-  firstnamemale: String,
-  lastnamemale: String,
-  firstnamefemale: String,
-  lastnamefemale: String,
+  firstname: String,
+  lastname: String,
   birthday: Date,
   age: String,
   street: String,
