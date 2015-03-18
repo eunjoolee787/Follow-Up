@@ -36,6 +36,14 @@ app.get('/prospects', function (req, res) {
   });
 });
 
+app.get('/prospects/:prospectId', function (req, res) {
+  var prospectId = req.params.prospectId;
+
+    Prospect.findOne ({'_id': prospectId}, function (err, prospect) {
+      res.json(prospect);
+      })
+  });
+
 app.post('/form', function (req, res) {
 
   console.log(req.body);
