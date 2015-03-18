@@ -30,6 +30,12 @@ app.get('/form', function (req, res) {
   res.render('form');
 });
 
+app.get('/prospects', function (req, res) {
+  Prospect.find({}, function (err, prospects) {
+    res.json(prospects);
+  });
+});
+
 app.post('/form', function (req, res) {
 
   console.log(req.body);
