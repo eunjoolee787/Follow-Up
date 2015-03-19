@@ -44,6 +44,32 @@ app.get('/prospects/:prospectId', function (req, res) {
       })
   });
 
+app.get('/prospects/:prospectId/edit', function (req, res) {
+  Prospect.findById(req.params.id, function (err, prospect) {
+    if (err) {
+      throw err;
+    } var locals = {
+      firstname: prospect.firstname,
+      lastname: prospect.lastname
+    };
+    res.render('prospect_edit', locals);
+  });
+});
+
+app.put('/prospects/:prospectId', function (req, res) {
+  var editProspect = {
+    firstname: req.body.firstname,
+    lastname: req.body.lastname
+  };
+  Prospect.findByIdAndUpdate(req.params.id, editProspect, function (err, prospect) {
+    if (err) {
+      throw err;
+    } else {
+      res.redirect('/prospect');
+    }
+  });
+});
+
 app.post('/form', function (req, res) {
 
   console.log(req.body);
