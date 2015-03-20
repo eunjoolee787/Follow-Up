@@ -17,8 +17,9 @@ var Routes = function (app) {
         }
       };
       req.onerror = function() {
-        reject(Erro)
-      }
+        reject(Error("Network Error"));
+      };
+      req.send();
     })
   }
 }

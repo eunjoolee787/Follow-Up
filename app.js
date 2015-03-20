@@ -43,16 +43,19 @@ mongoose.connect(CONNECTION_STRING);
 //Passport Area
 //passport will serialize user instances to and from session
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user);
 });
 //passport will deserialize user instances to and from session
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+passport.deserializeUser(function(user, done) {
+  User.findById(user._id, function(err, user) {
     done(null, user);
   }); 
 });
 
 passport.use(new LocalStrategy({
+    usernameField: 'username',
+    passwordField: 'password'
+  },
   function(username, password, done) {
     User.findOne({ username: username}, function (err, user) {
       if(err) {
@@ -61,8 +64,8 @@ passport.use(new LocalStrategy({
       if(!user) {
         return done(null, false, { message: 'Incorrect username.'});
       }
-      if(!user.validePassword(password)) {
-        return done(null, false { message: 'Incorrect password'});
+      if(encryptPassword(password) !== user.password) {
+        return done(null, false, { message: 'Incorrect password.'});
       }
       return done (null, user);
     });
@@ -83,6 +86,14 @@ app.get('*', function(req, res, next) {
   //store new variable so I don't have to pass in all the req.user data to jade views
   res.locals.loggedIn = (req.user) ? true : false;
   next();
+});
+
+app.get('/login', function (req, res) {
+  res.render('login.jade')
+});
+
+app.get('/form', ensureAuthenticated, function (req, res) {
+  res.render('form');
 });
 
 
@@ -176,7 +187,16 @@ app.post('/form', function (req, res) {
 
 
 //POST AREA
+// LOGIN ROUTES
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/new_login',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
 
+//Render New Blog Form
+app.get('/new_login', ensureAuthenticated, function (req, res) {
+  res.render('new_login.jade');
+});
 
 //DELETE AREA
 // app.delete('/prospects/:prospectId', isOwner, function (req, res) {
