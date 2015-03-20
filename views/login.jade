@@ -1,0 +1,26 @@
+extends ./layout.jade
+
+
+//- block link
+  //- a.new_post(href="/new_blog") NEW BLOG
+
+block login
+  div#login_form
+    div.row
+      div.small-9.small-centered.columns
+        //- =messages
+        form(action='/login')
+          //- div
+          //-   label
+          //-     | Email:
+          //-   input(type='text', name='email', required)
+          //- div
+          //-   label
+          //-     | Password:
+          //-   input(type='password', name='password', required)
+          div.login
+            //- button(type='submit')
+            a(href="/login")
+              | Login success
+  
+

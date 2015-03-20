@@ -55,6 +55,23 @@
 <!-- SAVE BUTTON -->
 <input type="button" value="save" ng-click="app.addPerson(app.person)"/>
 
+<!-- LOGIN BUTTON -->
+<label class="item item-input">
+    <span class="input-label">Username</span>
+    <input type="text">
+  </label>
+
+
+<label class="item item-input">
+    <span class="input-label">Password</span>
+    <input type="text">
+  </label>
+<input type="button" value="Login" ng-click="app.login(app.credentials)"/>
+
+<!-- LOG OUT -->
+<label class="item item-input">Logout</label>
+<input type="button" value="Logout" ng-click="app.logout(app.logout)"/>
+
 <!--   <h1>hello</h1> -->
 
 <!-- <ul>
