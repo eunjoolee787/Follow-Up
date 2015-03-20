@@ -52,6 +52,21 @@ passport.deserializeUser(function(user, done) {
   }); 
 });
 
+//FUNCTIONS
+function ensureAuthenticated (req, res, next) {
+  if (req.isAuthenticated() ){
+    return next();
+  }
+
+  //store the url they're coming from
+  req.session.redirectUrl = req.url;
+
+  //not authenticated
+  req.flash("warn", "You must be logged-in to do that.");
+  res.redirect('/login');
+};
+
+
 passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
