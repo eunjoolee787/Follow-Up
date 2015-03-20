@@ -8,11 +8,14 @@ var ejs = require('ejs');
 var cors = require('cors');
 var app = express();//Creates a new express instance
 
+var Schema = mongoose.Schema;//DO I NEED THIS?
+var secret = process.env.DBPASS;
 var session = require('express-session');// to keep track of users as they journey sites
 var flash = require ('connect-flash');//shows an error message
 var passport = require('passport');//authentication middleware
 var LocalStrategy = require('passport-local').Strategy;//constructor function to create a new auth. strategy
 var crypto = require('crypto');//stores the password & salt properly
+var User = require('../models/users.js');
 
 var config = require('./config');
 var CONNECTION_STRING = config.mongo;
@@ -22,7 +25,7 @@ var CONNECTION_STRING = config.mongo;
 app.use(express.static(__dirname, 'views'));//Tell express where to find static files
 app.set('view engine', 'ejs');//Tell server we're using .jade files instead of .html files
 app.use(session({ //in every session, verify user session
-  secret: 'follow-up',
+  secret: config.secret,
   resave: false,
   saveUninitialized: true
 }));
@@ -39,14 +42,42 @@ mongoose.connect(CONNECTION_STRING);
 //Passport Area
 //passport will serialize user instances to and from session
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user.id);
 });
 //passport will deserialize user instances to and from session
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
     done(null, user);
+  }); 
 });
 
+passport.use(new LocalStrategy({
+  function(username, password, done) {
+    User.findOne({ username: username}, function (err, user) {
+      if(err) {
+        return done(err);
+      }
+      if(!user) {
+        return done(null, false, { message: 'Incorrect username.'});
+      }
+      if(!user.validePassword(password)) {
+        return done(null, false { message: 'Incorrect password'});
+      }
+      return done (null, user);
+    });
+  }
+});
 
+var Routes = require('./controllers/routes');
+Routes(app);
+
+var server = app.listen(config.port, function() {
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log('Example app listening at http://%s:%s', host, port)
+});
+
+// GET REQUEST
 app.get('*', function(req, res, next) {
   //store new variable so I don't have to pass in all the req.user data to jade views
   res.locals.loggedIn = (req.user) ? true : false;
@@ -142,8 +173,11 @@ app.post('/form', function (req, res) {
     });
   });
 
-  app.post('/login', auth.login);
 
+//POST AREA
+
+
+//DELETE AREA
 // app.delete('/prospects/:prospectId', isOwner, function (req, res) {
 //   Assignment.findByIdAndRemove(req.params.id, function (err, assignment) {
 //     if(err) {
