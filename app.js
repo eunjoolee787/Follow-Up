@@ -23,7 +23,8 @@ var CONNECTION_STRING = config.mongo;
 
 //MIDDLEWARE AREA
 app.use(express.static(__dirname, 'views'));//Tell express where to find static files
-app.set('view engine', 'ejs');//Tell server we're using .jade files instead of .html files
+app.set('views', __dirname +'/views');
+app.set('view engine', 'ejs');
 app.use(session({ //in every session, verify user session
   secret: config.secret,
   resave: false,

@@ -1,4 +1,5 @@
 {
   "port": 4000,
+  "secret": "password",
   "mongo": "mongodb://prospect:votreasure@ds033499.mongolab.com:33499/follow-up"
 }
