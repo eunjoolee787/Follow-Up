@@ -1,25 +1,25 @@
-var express = require('express');
-var passport = require('passport');
-var User = require('../models/user');
-var crypto = require('crypto');
+// var express = require('express');
+// var passport = require('passport');
+// var User = require('../models/user');
+// var crypto = require('crypto');
 
-var Routes = function (app) {
+// var Routes = function (app) {
 
-  function get(url) {
-    return new Promise(function (resolve, reject) {
-      var req = new XMLHttpRequest();
-      req.open('GET', url);
-      req.onload = function() {
-        if (req.status === 200) {
-          resolve(req.response);
-        } else {
-          reject(Error(req.statusText));
-        }
-      };
-      req.onerror = function() {
-        reject(Error("Network Error"));
-      };
-      req.send();
-    })
-  }
-}
+//   function get(url) {
+//     return new Promise(function (resolve, reject) {
+//       var req = new XMLHttpRequest();
+//       req.open('GET', url);
+//       req.onload = function() {
+//         if (req.status === 200) {
+//           resolve(req.response);
+//         } else {
+//           reject(Error(req.statusText));
+//         }
+//       };
+//       req.onerror = function() {
+//         reject(Error("Network Error"));
+//       };
+//       req.send();
+//     })
+//   }
+// }

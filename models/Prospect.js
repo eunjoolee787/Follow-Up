@@ -13,7 +13,7 @@ var prospectSchema = mongoose.Schema({
   zip: String,
   facebook: String,
   instagram: String,
-  contactdate: Date,
+  initialdate: Date,
   contactperson: String,
   nameofevent: String,
   previouslysaved: String,

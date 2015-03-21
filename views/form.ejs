@@ -32,8 +32,8 @@
 
 
 
-<label for="contactdate">Contact Date</label>
-<input type="text", placeholder="contact date" ng-model="app.person.contactdate" ui-date/>
+<label for="contactdate">Initial Date</label>
+<input type="date", placeholder="initial date" ng-model="app.person.initialdate" ui-date/>
 <input type="text", placeholder="contact person" ng-model="app.person.contactperson"/>
 <input type="text", placeholder="name of event" ng-model="app.person.nameofevent"/>
 
@@ -44,13 +44,13 @@
 <input type="text", placeholder="status" ng-model="app.person.status"/>
 
 <label for="last contact date">last contact date</label>
-<input type="text", placeholder="last contact date" ng-model="app.person.lastcontactdate" ui-date/>
+<input type="date", placeholder="last contact date" ng-model="app.person.lastcontactdate" ui-date/>
 
 <label for="created date">created date</label>
-<input type="text", placeholder="created date" ng-model="app.person.createddate" ui-date/>
+<input type="date", placeholder="created date" ng-model="app.person.createddate" ui-date/>
 
 <label for="modified date">modified date</label>
-<input type="text", placeholder="modified date" ng-model="app.person.modifieddate" ui-date/>
+<input type="date", placeholder="modified date" ng-model="app.person.modifieddate" ui-date/>
 
 <!-- SAVE BUTTON -->
 <input type="button" value="save" ng-click="app.addPerson(app.person)"/>

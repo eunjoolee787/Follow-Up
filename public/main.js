@@ -18,16 +18,17 @@ app.controller("AccountCtrl", function ($http) {
           console.log(error);
         })
     }
-    app.login = function (credentials) {
-      $http.post("http://localhost:4000/login", credentials)
-      .success(function (login) {
-        app.login = login;
-        console.log(login);
-      })
-      .error(function (error) {
-        console.log(error);
-      })
-    }
-});
+    
+//     app.login = function (credentials) {
+//       $http.post("http://localhost:4000/login", credentials)
+//       .success(function (login) {
+//         app.login = login;
+//         console.log(login);
+//       })
+//       .error(function (error) {
+//         console.log(error);
+//       })
+//     }
+// });
 
 
