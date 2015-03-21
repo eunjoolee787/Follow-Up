@@ -29,6 +29,6 @@ app.controller("AccountCtrl", function ($http) {
 //         console.log(error);
 //       })
 //     }
-// });
+});
 
 
