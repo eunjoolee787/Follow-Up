@@ -27,7 +27,10 @@ var prospectSchema = mongoose.Schema({
   letter: String,
   visitchurch: String,
   phonecall: String, 
-  email: String
+  email: String,
+  saved: String,
+  baptized: String,
+  joinedthechurch: String
 });
 
 var Prospect = mongoose.model('Prospect', prospectSchema);

@@ -196,7 +196,10 @@ app.post('/form', function (req, res) {
     letter: req.body.letter,
     visitchurch: req.body.visitchurch,
     phonecall: req.body.phonecall,
-    email: req.body.email
+    email: req.body.email,
+    saved: req.body.saved,
+    baptized: req.body.baptized,
+    joinedthechurch: req.body.joinedthechurch
   });
 
   prospect.save(function (err, prospect, next) {
