@@ -191,7 +191,12 @@ app.post('/form', function (req, res) {
     status: req.body.status,
     lastcontactdate: req.body.lastcontactdate,
     createddate: req.body.createddate,
-    modifieddate: req.body.modifieddate
+    modifieddate: req.body.modifieddate, 
+    visit: req.body.visit,
+    letter: req.body.letter,
+    visitchurch: req.body.visitchurch,
+    phonecall: req.body.phonecall,
+    email: req.body.email
   });
 
   prospect.save(function (err, prospect, next) {

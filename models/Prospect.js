@@ -22,7 +22,12 @@ var prospectSchema = mongoose.Schema({
   status: String,
   lastcontactdate: Date,
   createddate: Date,
-  modifieddate: Date
+  modifieddate: Date,
+  visit: String,
+  letter: String,
+  visitchurch: String,
+  phonecall: String, 
+  email: String
 });
 
 var Prospect = mongoose.model('Prospect', prospectSchema);
