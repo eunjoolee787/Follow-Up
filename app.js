@@ -153,43 +153,12 @@ app.get('/prospects/:prospectId/edit', function (req, res) {
 });
 
 app.put('/prospects/:prospectId', function (req, res) {
-  var editProspect = {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    birthday: req.body.birthday,
-    age: req.body.age,
-    tel: req.body.tel, 
-    email: req.body.email,
-    street: req.body.street,
-    city: req.body.city,
-    state: req.body.state,
-    zip: req.body.zip,
-    facebook: req.body.facebook,
-    instagram: req.body.instagram,
-    initialdate: req.body.initialdate,
-    contactperson: req.body.contactperson,
-    nameofevent: req.body.nameofevent,
-    previouslysaved: req.body.previouslysaved,
-    previouslybaptized: req.body.previouslybaptized,
-    joinchurch: req.body.joinchurch,
-    status: req.body.status,
-    lastcontactdate: req.body.lastcontactdate,
-    createddate: req.body.createddate,
-    modifieddate: req.body.modifieddate, 
-    visit: req.body.visit,
-    letter: req.body.letter,
-    visitchurch: req.body.visitchurch,
-    phonecall: req.body.phonecall,
-    email: req.body.email,
-    saved: req.body.saved,
-    baptized: req.body.baptized,
-    joinedthechurch: req.body.joinedthechurch
-  };
-  Prospect.findByIdAndUpdate(req.params.id, editProspect, function (err, prospect) {
-    if (err) {
+
+  Prospect.findByIdAndUpdate(req.params.prospectId, req.body, function (err, prospect) {
+    if(err) {
       throw err;
     } else {
-      res.redirect('/prospect');
+      res.json(201, prospect);
     }
   });
 });
@@ -231,11 +200,12 @@ app.post('/form', function (req, res) {
   });
 
   prospect.save(function (err, prospect, next) {
-    if (err) { return next(err); }
-      res.json(201, prospect);
-    });
+    if (err) { 
+      return next(err); 
+    }
+    res.json(201, prospect);
   });
-
+});
 
 // //POST AREA
 // // LOGIN ROUTES
