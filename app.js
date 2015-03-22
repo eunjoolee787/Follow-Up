@@ -153,7 +153,7 @@ app.get('/prospects/:prospectId/edit', function (req, res) {
 });
 
 app.put('/prospects/:prospectId', function (req, res) {
-
+  
   Prospect.findByIdAndUpdate(req.params.prospectId, req.body, function (err, prospect) {
     if(err) {
       throw err;
