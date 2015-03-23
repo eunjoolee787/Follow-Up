@@ -8,14 +8,12 @@ var ejs = require('ejs');
 var cors = require('cors');
 var app = express();//Creates a new express instance
 
-// var Schema = mongoose.Schema;//DO I NEED THIS?
-// var secret = process.env.DBPASS;
-// var session = require('express-session');// to keep track of users as they journey sites
-// var flash = require ('connect-flash');//shows an error message
-// var passport = require('passport');//authentication middleware
-// var LocalStrategy = require('passport-local').Strategy;//constructor function to create a new auth. strategy
-// var crypto = require('crypto');//stores the password & salt properly
-// var User = require('../models/users.js');
+
+var session = require('express-session');// to keep track of users as they journey sites
+var flash = require ('connect-flash');//shows an error message
+var passport = require('passport');//authentication middleware
+var LocalStrategy = require('passport-local').Strategy;//constructor function to create a new auth. strategy
+var User = require('./models/users.js');
 
 var config = require('./config');
 var CONNECTION_STRING = config.mongo;
@@ -23,106 +21,151 @@ var CONNECTION_STRING = config.mongo;
 
 //MIDDLEWARE AREA
 app.use(express.static(__dirname, 'views'));//Tell express where to find static files
-//app.set('views', __dirname +'/views');
-app.set('view engine', 'ejs');
-// app.use(session({ //in every session, verify user session
-//   secret: config.secret,
-//   resave: false,
-//   saveUninitialized: true
-// }));
+// app.set('view engine', 'ejs');
+app.set('view engine', 'jade');
+app.use(session({ //in every session, verify user session
+  secret: config.secret,
+  resave: false,
+  saveUninitialized: true
+}));
 app.use(methodOverride('_method'));//use the methodOverride method
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-// app.use(flash());//use the flash/alert method
-// app.use(passport.initialize());//sets up passport
-// app.use(passport.session());//passport remembers your users
+app.use(flash());//use the flash/alert method
+app.use(passport.initialize());//sets up passport
+app.use(passport.session());//passport remembers your users
 app.use(cors());
 
 mongoose.connect(CONNECTION_STRING);
 
-// //Passport Area
-// //passport will serialize user instances to and from session
-// passport.serializeUser(function(user, done) {
-//   done(null, user);
-// });
-// //passport will deserialize user instances to and from session
-// passport.deserializeUser(function(user, done) {
-//   User.findById(user._id, function(err, user) {
-//     done(null, user);
-//   }); 
-// });
+passport.use(new LocalStrategy({
+    usernameField: 'username',
+    passwordField: 'password'
+  },
+  function(username, password, done) {
+    User.findOne({ username: username}, function (err, user) {
+      if(err) {
+        return done(err);
+      }
+      if(!user) {
+        return done(null, false, { message: 'Incorrect username.'});
+      }
+      if(!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.'});
+      }
+      return done (null, user);
+    });
+  }
+));
 
-// //FUNCTIONS
-// function ensureAuthenticated (req, res, next) {
-//   if (req.isAuthenticated() ){
-//     return next();
-//   }
+//Passport Area
+//passport will serialize user instances to and from session
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+//passport will deserialize user instances to and from session
+passport.deserializeUser(function(user, done) {
+  User.findById(user._id, function(err, user) {
+    done(null, user);
+  }); 
+});
 
-//   //store the url they're coming from
-//   req.session.redirectUrl = req.url;
-
-//   //not authenticated
-//   req.flash("warn", "You must be logged-in to do that.");
-//   res.redirect('/login');
-// };
-
-
-// passport.use(new LocalStrategy({
-//     usernameField: 'username',
-//     passwordField: 'password'
-//   },
-//   function(username, password, done) {
-//     User.findOne({ username: username}, function (err, user) {
-//       if(err) {
-//         return done(err);
-//       }
-//       if(!user) {
-//         return done(null, false, { message: 'Incorrect username.'});
-//       }
-//       if(encryptPassword(password) !== user.password) {
-//         return done(null, false, { message: 'Incorrect password.'});
-//       }
-//       return done (null, user);
-//     });
-//   }
-// });
-
-// var Routes = require('./controllers/routes');
-// Routes(app);
-
-// var server = app.listen(config.port, function() {
-//   var host = server.address().address;
-//   var port = server.address().port;
-//   console.log('Example app listening at http://%s:%s', host, port)
-// });
-
-// // GET REQUEST
-// app.get('*', function(req, res, next) {
-//   //store new variable so I don't have to pass in all the req.user data to jade views
-//   res.locals.loggedIn = (req.user) ? true : false;
-//   next();
-// });
-
-// app.get('/login', function (req, res) {
-//   res.render('login.jade')
-// });
-
-// app.get('/form', ensureAuthenticated, function (req, res) {
-//   res.render('form');
-// });
+//FUNCTIONS
+function ensureAuthenticated (req, res, next) {
+  if (req.isAuthenticated() ){
+    return next();
+  }
+  //not authenticated
+  res.redirect('/login');
+}
 
 
-//handles logging out the user
-// app.get('/logout', function (req, res) {
-//   req.logout();
-//   res.redirect('/');
-// });
+// GET REQUEST
+app.get('*', function(req, res, next) {
+  //store new variable so I don't have to pass in all the req.user data to jade views
+  res.locals.loggedIn = (req.user) ? true : false;
+  next();
+});
+
+app.get('/signup', function (req, res) {
+  res.render('signup');
+});
+
+app.post('/signup', function (req, res) {
+  //if not correct, let them try again
+  //check the password
+  if(req.body.password !== req.body.confirm_password) {
+    console.log(req);
+    return res.render('signup', {messages: "password does not match, please try again"});
+  }
+
+  else { //else passwords match
+    var new_user = new User({
+      username: req.body.username,
+      password: User.passwordCrypt(req.body.password)
+    });
+    new_user.save(function (err, user) {//save is part of mongoose function
+      if(err) {//error save in mongolab
+        throw err;
+      } 
+      req.login(user, function(err) {//error in login the user part of mongoose
+        if(err) {
+          throw err;
+        }
+      });
+      res.redirect('/');
+    });
+  } 
+});
+
+app.get('/change_password', ensureAuthenticated, function(req, res) {
+  res.render('change_password');
+});
+
+app.post('/change_password', ensureAuthenticated, function(req, res) {
+  //check two things:
+  // 1. The current password the user entered matches the hashed password stored in the mongolab
+  // 2. The new password the user entered matches the confirm password
+  if(User.passwordCrypt(req.body.current_password) === req.user.password && req.body.new_password === req.body.confirm_password) {
+    //param 1 is what the user you are trying to find
+    //param 2 is what you want to change about the user
+    //Find the user whose username is req.user.username and change their password
+    User.findOneAndUpdate({ username: req.user.username }, 
+      { password: User.passwordCrypt(req.body.new_password) }, function (err, user) {
+        if(err) {
+          throw err;
+        } 
+        res.redirect("/");
+      });
+  } else {
+    return res.render('change_password', {messages: "password does not match, please try again"});
+  }
+
+});
+
+app.get('/login', function (req, res) {
+  res.render('login');
+});
+
+//POST AREA
+// LOGIN ROUTES
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/change_password',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })); 
+
+
+// //handles logging out the user
+app.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('/login');
+});
 
 app.get('/', function (req, res) {
   res.render('index');
 });
 
-app.get('/form', function (req, res) {
+app.get('/form', ensureAuthenticated, function (req, res) {
   res.render('form');
 });
 
@@ -207,17 +250,7 @@ app.post('/form', function (req, res) {
   });
 });
 
-// //POST AREA
-// // LOGIN ROUTES
-// app.post('/login',
-//   passport.authenticate('local', { successRedirect: '/new_login',
-//                                    failureRedirect: '/login',
-//                                    failureFlash: true })
 
-// //Render New Blog Form
-// app.get('/new_login', ensureAuthenticated, function (req, res) {
-//   res.render('new_login.jade');
-// });
 
 //DELETE AREA
 // app.delete('/prospects/:prospectId', isOwner, function (req, res) {

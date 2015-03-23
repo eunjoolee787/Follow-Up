@@ -1,29 +1,31 @@
-// var mongoose = require('mongoose');
+var mongoose = require('mongoose');
+var crypto = require('crypto');//stores the password & salt properly
+var config = require('../config');
 
-// //set up user model in the DB
-// var userSchema = mongoose.Schema({
-//   username: String,
-//   password: String
-// });
+//set up user model in the DB
+var userSchema = mongoose.Schema({
+  username: String,
+  password: String
+});
 
-// userSchema.methods.validPassword = function (check_password) {
-//   return (passwordCrypt(check_password) === this.password);
-// };
+//var newUser = new User();
+//newUser.validPassword('password');
+userSchema.methods.validPassword = function (notHashedPassword) {
+  return (User.passwordCrypt(notHashedPassword) === this.password);
+};//this.password refers to the password stored in mongolab
 
-// function passwordCrypt(password) {
-//   var salt = process.env.SALT;
-//     var user_password = password;
-//     var salted_user_password = user_password + salt;
-//     var shasum = crypto.createHash('sha512');
-//     shasum.update(salted_user_password);
-//     var input_result = shasum.digest('hex');
+//User.passwordCrypt('password');
+userSchema.statics.passwordCrypt = function (notHashedPassword) {
+    var salted_user_password = notHashedPassword + config.salt;
+    var shasum = crypto.createHash('sha512');
+    shasum.update(salted_user_password);
 
-//     return input_result
-// }
+    return shasum.digest('hex');
+};
 
 
-// //going into DB and creating a user collection
-// var User = mongoose.model('users', userSchema);
+//going into DB and creating a user collection
+var User = mongoose.model('User', userSchema);
 
-// module.exports = User;
+module.exports = User;
 
