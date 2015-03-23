@@ -87,6 +87,20 @@ app.get('*', function(req, res, next) {
   next();
 });
 
+app.post('/validateUser', function(req, res) {
+  User.findOne ({
+    username: req.body.username, 
+    password: User.passwordCrypt(req.body.password)
+  }, 
+  function (err, user) {
+    if (user) {
+      res.json({ success: true });
+    } else {
+      res.json({ success: false });    
+    }
+  });
+});
+
 app.get('/signup', function (req, res) {
   res.render('signup');
 });
