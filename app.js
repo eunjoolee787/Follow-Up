@@ -250,7 +250,7 @@ app.post('/form', function (req, res) {
     letter: req.body.letter,
     visitchurch: req.body.visitchurch,
     phonecall: req.body.phonecall,
-    email: req.body.email,
+    emailed: req.body.emailed,
     saved: req.body.saved,
     baptized: req.body.baptized,
     joinedthechurch: req.body.joinedthechurch
