@@ -264,17 +264,28 @@ app.post('/form', function (req, res) {
   });
 });
 
-
-
-//DELETE AREA
-// app.delete('/prospects/:prospectId', isOwner, function (req, res) {
-//   Assignment.findByIdAndRemove(req.params.id, function (err, assignment) {
-//     if(err) {
-//       return console.log(err);
-//     }
-//     res.redirect('/prospect');
+// app.get('/prospects/:prospectId/edit', function (req, res) {
+//   Prospect.findById(req.params.id, function (err, prospect) {
+//     if (err) {
+//       throw err;
+//     } var locals = {
+//       firstname: prospect.firstname,
+//       lastname: prospect.lastname
+//     };
+//     res.render('prospect_edit', locals);
 //   });
 // });
+
+// //DELETE AREA
+app.delete('/prospects/:prospectId', function (req, res) {
+  console.log(req.params.id);
+  Prospect.findByIdAndRemove(req.params.prospectId, function (err, prospect) {
+    if(err) {
+      return console.log(err);
+    }
+    res.json(201, prospect);
+  });
+});
 
 module.exports.app = app;
 // module.exports = config;
