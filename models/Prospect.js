@@ -23,6 +23,8 @@ var prospectSchema = mongoose.Schema({
   lastcontactdate: Date,
   createddate: Date,
   modifieddate: Date,
+  modifieddateType: Date,
+  modifieddateDecision: Date,
   visit: String,
   letter: String,
   visitchurch: String,

@@ -215,7 +215,7 @@ app.put('/prospects/:prospectId', function (req, res) {
     if(err) {
       throw err;
     } else {
-      res.json(201, prospect);
+      res.json(prospect);
     }
   });
 });
@@ -245,7 +245,9 @@ app.post('/form', function (req, res) {
     status: req.body.status,
     lastcontactdate: req.body.lastcontactdate,
     createddate: req.body.createddate,
-    modifieddate: req.body.modifieddate, 
+    modifieddate: new Date(), 
+    modifieddateType: new Date(),
+    modifieddateDecision: new Date(),
     visit: req.body.visit,
     letter: req.body.letter,
     visitchurch: req.body.visitchurch,
