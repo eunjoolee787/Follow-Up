@@ -18,6 +18,10 @@ var prospectSchema = mongoose.Schema({
   facebook: String,
   instagram: String,
   initialdate: Date,
+  createddate: {
+    type: Date,
+    default: Date.now
+  },
   contactperson: String,
   nameofevent: String,
   previouslysaved: String,
