@@ -226,6 +226,10 @@ app.post('/form', function (req, res) {
   var prospect = new Prospect({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
+    gender: req.body.gender,
+    firstnameSpouse: req.body.firstnameSpouse,
+    lastnameSpouse: req.body.lastnameSpouse,
+    genderSpouse: req.body.genderSpouse,
     birthday: req.body.birthday,
     age: req.body.age,
     tel: req.body.tel, 

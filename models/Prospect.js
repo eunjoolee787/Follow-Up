@@ -3,6 +3,10 @@ var mongoose = require('mongoose');
 var prospectSchema = mongoose.Schema({
   firstname: String,
   lastname: String,
+  gender: String,
+  firstnameSpouse: String,
+  lastnameSpouse: String,
+  genderSpouse: String,
   birthday: Date,
   age: String,
   tel: String,
