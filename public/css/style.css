@@ -1,0 +1,42 @@
+/* Empty. Add your own CSS if you like */
+
+.bar.bar-header {
+  background-color: #444;
+}
+
+div.bar.bar-header.item-input-inset {
+  background-color: #00d6dd;
+}
+
+button.button.button-block.button-calm {
+  background-color: #00d6dd;
+}
+
+.item.item-divider {
+  background-color: #00d6dd;
+  position: relative;
+}
+
+.item.item-input.modified-date {
+  background-color: #f1f1f1;
+}
+
+.item.item-input.modified-date-type {
+  background-color: #f1f1f1;
+}
+
+.item.item-input.modified-date-decision {
+  background-color: #f1f1f1;
+}
+
+p.title-name {
+  color: #444;
+  font-size: 18px;
+  position: absolute;
+  padding-top: 14px;
+}
+
+a.edit {
+  float: right;
+  color: black;
+}

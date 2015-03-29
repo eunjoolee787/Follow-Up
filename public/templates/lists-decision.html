@@ -1,0 +1,27 @@
+<ion-view view-title="Record Decision">
+  <ion-content>
+    <div class="list">
+      <ion-toggle  ng-model="prospect.saved" ng-change="app.toggle()">
+          Saved
+      </ion-toggle>
+
+      <ion-toggle  ng-model="prospect.baptized" ng-change="app.toggle()">
+          Baptized
+      </ion-toggle>
+
+      <ion-toggle  ng-model="prospect.joinedthechurch" ng-change="app.toggle()">
+          Joined the church
+      </ion-toggle>
+    </div>
+
+  <input type="hidden" ng-model="prospect.modifieddateDecision"> 
+
+    <!-- save button-->
+  <div class="button-bar">
+    <a class="button button-balanced" value="save" ng-click="app.editPerson(prospect)">Save</a>
+  </div>
+  <!-- {{app.person}}  -->
+
+
+  </ion-content>
+</ion-view>

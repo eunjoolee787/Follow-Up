@@ -20,7 +20,7 @@ var CONNECTION_STRING = config.mongo;
 
 
 //MIDDLEWARE AREA
-app.use(express.static(__dirname, 'views'));//Tell express where to find static files
+app.use(express.static('public'));//Tell express where to find static files
 // app.set('view engine', 'ejs');
 app.set('view engine', 'jade');
 app.use(session({ //in every session, verify user session
@@ -176,7 +176,8 @@ app.get('/logout', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-  res.render('index');
+  // res.render('../index.html');
+  res.sendfile('./public/index.html');
 });
 
 app.get('/form', ensureAuthenticated, function (req, res) {
