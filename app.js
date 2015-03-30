@@ -20,7 +20,8 @@ var CONNECTION_STRING = config.mongo;
 
 
 //MIDDLEWARE AREA
-app.use(express.static('public'));//Tell express where to find static files
+// app.use(express.static('public'));//Tell express where to find static files
+app.use(express.static(__dirname, 'views'));//Tell express where to find static files
 // app.set('view engine', 'ejs');
 app.set('view engine', 'jade');
 app.use(session({ //in every session, verify user session
@@ -94,12 +95,16 @@ app.post('/validateUser', function(req, res) {
   }, 
   function (err, user) {
     if (user) {
+      console.log("Andrew");
+      req.session.test = true;
+      console.log(req.session);
       res.json({ success: true });
     } else {
       res.json({ success: false });    
     }
   });
 });
+
 
 app.get('/signup', function (req, res) {
   res.render('signup');
@@ -176,8 +181,9 @@ app.get('/logout', function (req, res) {
 });
 
 app.get('/', function (req, res) {
+  res.render('index');
   // res.render('../index.html');
-  res.sendfile('./public/index.html');
+  // res.sendfile('./public/index.html');
 });
 
 app.get('/form', ensureAuthenticated, function (req, res) {
@@ -186,6 +192,7 @@ app.get('/form', ensureAuthenticated, function (req, res) {
 
 app.get('/prospects', function (req, res) {
   Prospect.find({}, function (err, prospects) {
+    console.log(req.session);
     res.json(prospects);
   });
 });
