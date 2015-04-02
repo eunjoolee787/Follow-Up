@@ -7,7 +7,7 @@ var Prospect = require('./models/Prospect');
 var ejs = require('ejs');
 var cors = require('cors');
 var app = express();//Creates a new express instance
-
+var sendMail = require('./sendmail');//require email
 
 var session = require('express-session');// to keep track of users as they journey sites
 var flash = require ('connect-flash');//shows an error message
@@ -202,7 +202,8 @@ app.get('/prospects/:prospectId', function (req, res) {
 
     Prospect.findOne ({'_id': prospectId}, function (err, prospect) {
       res.json(prospect);
-      })
+      sendMail('vohnlmedia808@gmail.com', prospect.email, "Your Prospect has been sent", JSON.stringify(prospect));
+      });
   });
 
 app.get('/prospects/:prospectId/edit', function (req, res) {
