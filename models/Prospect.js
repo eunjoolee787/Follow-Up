@@ -26,7 +26,6 @@ var prospectSchema = mongoose.Schema({
   nameofevent: String,
   previouslysaved: String,
   previouslybaptized: String,
-  joinchurch: String,
   modifieddate: Date,
   modifieddateType: Date,
   modifieddateDecision: Date,

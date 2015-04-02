@@ -254,7 +254,6 @@ app.post('/form', function (req, res) {
     nameofevent: req.body.nameofevent,
     previouslysaved: req.body.previouslysaved,
     previouslybaptized: req.body.previouslybaptized,
-    joinchurch: req.body.joinchurch,
     modifieddate: new Date(), 
     modifieddateType: new Date(),
     modifieddateDecision: new Date(),
