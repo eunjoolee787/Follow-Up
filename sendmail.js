@@ -11,7 +11,8 @@ function sendMail(from, to, subject, text, callback){
     from: from,
     to: to,
     subject: subject,
-    text: text
+    text: text,
+    attachments: [{'filename': 'prospect.txt', 'contents':data}]
   }, callback);//after sending
 
 }

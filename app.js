@@ -202,9 +202,112 @@ app.get('/prospects/:prospectId', function (req, res) {
 
     Prospect.findOne ({'_id': prospectId}, function (err, prospect) {
       res.json(prospect);
-      sendMail('vohnlmedia808@gmail.com', prospect.email, "Your Prospect has been sent", JSON.stringify(prospect));
+      // sendMail('vohnlmedia808@gmail.com', prospect.email, "Your Prospect has been sent", JSON.stringify(prospect));
       });
   });
+
+app.get('/prospects/:prospectId/export', function (req, res) {
+  function csvExport(prospect) {
+    return '"' + String(prospect || "").replace(/\"/g, '""') + '"';
+  } 
+  var prospectHeaders = [
+    "firstname",
+    "lastname",
+    "gender",
+    "firstnameSpouse",
+    "lastnameSpouse",
+    "genderSpouse",
+    "birthday",
+    "age",
+    "tel",
+    "email",
+    "street",
+    "city",
+    "state",
+    "zip",
+    "facebook",
+    "instagram",
+    "initialdate",
+    "contactperson",
+    "nameofevent",
+    "previouslysaved",
+    "previouslybaptized",
+    "joinchurch",
+    "modifieddate",
+    "modifieddateType",
+    "modifieddateDecision",
+    "visit",
+    "letter",
+    "visitchurch",
+    "phonecall",
+    "emailed",
+    "saved",
+    "baptized",
+    "joinedthechurch"
+  ].map(csvExport).join(',');
+
+  function docToCSV(prospect) {
+    return [
+    prospect.firstname,
+    prospect.lastname,
+    prospect.gender,
+    prospect.firstnameSpouse,
+    prospect.lastnameSpouse,
+    prospect.genderSpouse,
+    prospect.birthday,
+    prospect.age,
+    prospect.tel,
+    prospect.email,
+    prospect.street,
+    prospect.city,
+    prospect.state,
+    prospect.zip,
+    prospect.facebook,
+    prospect.instagram,
+    prospect.initialdate,
+    prospect.contactperson,
+    prospect.nameofevent,
+    prospect.previouslysaved,
+    prospect.previouslybaptized,
+    prospect.joinchurch,
+    prospect.modifieddate,
+    prospect.modifieddateType,
+    prospect.modifieddateDecision,
+    prospect.visit,
+    prospect.letter,
+    prospect.visitchurch,
+    prospect.phonecall,
+    prospect.emailed,
+    prospect.saved,
+    prospect.baptized,
+    prospect.joinedthechurch  
+    ].map(csvExport).join(',');
+  }
+
+  var sent = false;
+  function send(response) {
+    response.setHeader('Contact-information', 'attachment; filename=prospect.csv');
+    response.contentType('csv');
+    response.write(headers + '\n');
+    sent = true;
+  }
+
+  csvExport.find()
+  .sort('lastname')
+  .stream()
+  .on('data', function(csvExport) {
+    if(!sent) {send(res); }
+    res.write(docToCSV(csvExport) + '\n');
+  })
+  .on('close', function () {
+    res.end();
+  })
+  .on('error', function (err) {
+    res.send(500, {err: err, msg: "Failed to get contacts from db"});
+  });
+
+  });
+
 
 app.get('/prospects/:prospectId/edit', function (req, res) {
   Prospect.findById(req.params.id, function (err, prospect) {
