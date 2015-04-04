@@ -73,7 +73,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('ProspectsDetailCtrl', function($scope, $stateParams, Prospects, $ionicPopup) {
+.controller('ProspectsDetailCtrl', function($scope, $stateParams, Prospects, $ionicPopup, $cordovaEmailComposer) {
   $scope.prospect = {};
   Prospects.get($stateParams.prospectId)
   .then(function (response) {
@@ -111,7 +111,7 @@ angular.module('starter.controllers', [])
     //   subject: 'Greetings',
     //   body:    'How are you? Nice greetings from Leipzig'
     // });
-      cordova.plugins.email.open({
+      $cordovaEmailComposer.open({
         subject:     'Cordova Icon',
         attachments: 'base64:icon.png//iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/...'
       });
