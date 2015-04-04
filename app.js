@@ -75,7 +75,6 @@ passport.use(new LocalStrategy({
 
 //FUNCTIONS
 function ensureAuthenticated (req, res, next) {
-  console.log("Jenny");
   if (req.isAuthenticated() ){
     return next();
   }
@@ -185,14 +184,12 @@ app.get('/logout', function (req, res) {
 });
 
 app.get('/', function (req, res, next) {
-  console.log("marifel");
   // res.render('index');
   // res.render('../index.html');
   res.sendfile('./public/app.html');
   next();
 },
 ensureAuthenticated, function (req, res) {
-  console.log("marifel");
   // res.render('index');
   // res.render('../index.html');
   // res.sendfile('./public/index.html');
