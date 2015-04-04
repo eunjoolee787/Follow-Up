@@ -40,7 +40,7 @@ angular.module('starter.controllers', [])
 
     app.addPerson = function (person) {
       console.log(person);
-      $http.post("http://localhost:8000/form", person)
+      $http.post("/form", person)
         .success(function (data) {
           app.people = data;
           console.log(data);
@@ -134,7 +134,7 @@ angular.module('starter.controllers', [])
    // this
    // );
 
-  // $http({method: 'GET', url:"http://localhost:8000/prospects/"+$stateParams.prospectId})
+  // $http({method: 'GET', url:"/prospects/"+$stateParams.prospectId})
   //   .success(function(data, status, headers, config) {
   //     var element = angular.element('<a/>');
   //     element.attr({
@@ -179,7 +179,7 @@ angular.module('starter.controllers', [])
   })
 
   app.editPerson = function (person) {
-      $http.put("http://localhost:8000/prospects/"+$stateParams.prospectId, person)
+      $http.put("/prospects/"+$stateParams.prospectId, person)
         .success(function (data) {
           app.person = data;
           console.log(data);
@@ -258,7 +258,7 @@ angular.module('starter.controllers', [])
   })
 
   app.editPerson = function (person) {
-      $http.put("http://localhost:8000/prospects/"+$stateParams.prospectId, person)
+      $http.put("/prospects/"+$stateParams.prospectId, person)
         .success(function (data) {
           // app.people = data;
           app.person = data;
@@ -308,7 +308,7 @@ angular.module('starter.controllers', [])
   })
 
   app.editPerson = function (person) {
-      $http.put("http://localhost:8000/prospects/"+$stateParams.prospectId, person)
+      $http.put("/prospects/"+$stateParams.prospectId, person)
         .success(function (data) {
           // app.people = data;
           app.person = data;

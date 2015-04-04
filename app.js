@@ -39,6 +39,18 @@ app.use(cors());
 
 mongoose.connect(CONNECTION_STRING);
 
+//Passport Area
+//passport will serialize user instances to and from session
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+//passport will deserialize user instances to and from session
+passport.deserializeUser(function(user, done) {
+  User.findById(user._id, function(err, user) {
+    done(null, user);
+  }); 
+});
+
 passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
@@ -59,20 +71,11 @@ passport.use(new LocalStrategy({
   }
 ));
 
-//Passport Area
-//passport will serialize user instances to and from session
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-//passport will deserialize user instances to and from session
-passport.deserializeUser(function(user, done) {
-  User.findById(user._id, function(err, user) {
-    done(null, user);
-  }); 
-});
+
 
 //FUNCTIONS
 function ensureAuthenticated (req, res, next) {
+  console.log("Jenny");
   if (req.isAuthenticated() ){
     return next();
   }
@@ -82,7 +85,7 @@ function ensureAuthenticated (req, res, next) {
 
 
 // GET REQUEST
-app.get('*', function(req, res, next) {
+app.use(function(req, res, next) {
   //store new variable so I don't have to pass in all the req.user data to jade views
   res.locals.loggedIn = (req.user) ? true : false;
   next();
@@ -163,13 +166,14 @@ app.post('/change_password', ensureAuthenticated, function(req, res) {
 });
 
 app.get('/login', function (req, res) {
-  res.render('login');
+  // res.render('login');
+  res.sendfile('./public/login.html');
 });
 
 //POST AREA
 // LOGIN ROUTES
 app.post('/login',
-  passport.authenticate('local', { successRedirect: '/change_password',
+  passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/login',
                                    failureFlash: true })); 
 
@@ -180,8 +184,16 @@ app.get('/logout', function (req, res) {
   res.redirect('/login');
 });
 
-app.get('/', function (req, res) {
-  res.render('index');
+app.get('/', function (req, res, next) {
+  console.log("marifel");
+  // res.render('index');
+  // res.render('../index.html');
+  res.sendfile('./public/app.html');
+  next();
+},
+ensureAuthenticated, function (req, res) {
+  console.log("marifel");
+  // res.render('index');
   // res.render('../index.html');
   // res.sendfile('./public/index.html');
 });
@@ -190,14 +202,14 @@ app.get('/form', ensureAuthenticated, function (req, res) {
   res.render('form');
 });
 
-app.get('/prospects', function (req, res) {
+app.get('/prospects', ensureAuthenticated, function (req, res) {
   Prospect.find({}, function (err, prospects) {
     console.log(req.session);
     res.json(prospects);
   });
 });
 
-app.get('/prospects/:prospectId', function (req, res) {
+app.get('/prospects/:prospectId', ensureAuthenticated, function (req, res) {
   var prospectId = req.params.prospectId;
 
     Prospect.findOne ({'_id': prospectId}, function (err, prospect) {
@@ -206,7 +218,7 @@ app.get('/prospects/:prospectId', function (req, res) {
       });
   });
 
-app.get('/prospects/:prospectId/export', function (req, res) {
+app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res) {
   var prospectId = req.params.prospectId;
   function csvExport(prospect) {
     return '"' + String(prospect || "").replace(/\"/g, '""') + '"';
@@ -310,7 +322,7 @@ app.get('/prospects/:prospectId/export', function (req, res) {
   });
 
 
-app.get('/prospects/:prospectId/edit', function (req, res) {
+app.get('/prospects/:prospectId/edit', ensureAuthenticated, function (req, res) {
   Prospect.findById(req.params.id, function (err, prospect) {
     if (err) {
       throw err;
@@ -322,7 +334,7 @@ app.get('/prospects/:prospectId/edit', function (req, res) {
   });
 });
 
-app.put('/prospects/:prospectId', function (req, res) {
+app.put('/prospects/:prospectId', ensureAuthenticated, function (req, res) {
   console.log(req.params.prospectId);
   Prospect.findByIdAndUpdate(req.params.prospectId, req.body, function (err, prospect) {
     if(err) {
@@ -333,7 +345,7 @@ app.put('/prospects/:prospectId', function (req, res) {
   });
 });
 
-app.post('/form', function (req, res) {
+app.post('/form', ensureAuthenticated, function (req, res) {
 
   console.log(req.body);
   var prospect = new Prospect({
@@ -380,6 +392,7 @@ app.post('/form', function (req, res) {
 });
 
 // app.get('/prospects/:prospectId/edit', function (req, res) {
+//   console.log(req.params.id);
 //   Prospect.findById(req.params.id, function (err, prospect) {
 //     if (err) {
 //       throw err;
@@ -392,7 +405,7 @@ app.post('/form', function (req, res) {
 // });
 
 // //DELETE AREA
-app.delete('/prospects/:prospectId', function (req, res) {
+app.delete('/prospects/:prospectId', ensureAuthenticated, function (req, res) {
   console.log(req.params.id);
   Prospect.findByIdAndRemove(req.params.prospectId, function (err, prospect) {
     if(err) {

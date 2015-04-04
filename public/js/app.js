@@ -24,83 +24,26 @@ angular.module('starter', ['ionic',
     }
   });
 
-  $rootScope.$on( '$stateChangeStart', function(e, toState  , toParams
-                                                   , fromState, fromParams) {
-        // console.log(toState);
-        var isLogin = Session.loggedIn;
-        if(isLogin){
-           return; // no need to redirect 
-        }
+  // $rootScope.$on( '$stateChangeStart', function(e, toState  , toParams
+  //                                                  , fromState, fromParams) {
+  //       // console.log(toState);
+  //       var isLogin = Session.loggedIn;
+  //       if(isLogin){
+  //          return; // no need to redirect 
+  //       }
 
-        // now, redirect only not authenticated
+  //       // now, redirect only not authenticated
 
-        // var userInfo = authenticationSvc.getUserInfo();
+  //       // var userInfo = authenticationSvc.getUserInfo();
 
-        if(isLogin === false && toState.name != "login") {
-            e.preventDefault(); // stop current execution
-            $state.go('login'); // go to login
-        }
-    });
+  //       if(isLogin === false && toState.name != "login") {
+  //           e.preventDefault(); // stop current execution
+  //           $state.go('login'); // go to login
+  //       }
+  //   });
 })
 
-// document.addEventListener('deviceready', function() {
 
-// }, false);
-
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-  console.log("console.log works well");
-}
-
-// exampleApp.controller("ExampleController", function($scope, $cordovaCamera) {
- 
-//     $scope.takePicture = function() {
-//         var options = { 
-//             quality : 75, 
-//             destinationType : Camera.DestinationType.DATA_URL, 
-//             sourceType : Camera.PictureSourceType.CAMERA, 
-//             allowEdit : true,
-//             encodingType: Camera.EncodingType.JPEG,
-//             targetWidth: 300,
-//             targetHeight: 300,
-//             popoverOptions: CameraPopoverOptions,
-//             saveToPhotoAlbum: false
-//         };
- 
-//         $cordovaCamera.getPicture(options).then(function(imageData) {
-//             $scope.imgURI = "data:image/jpeg;base64," + imageData;
-//         }, function(err) {
-//             // An error occured. Show a message to the user
-//         });
-//     }
- 
-// });
-
-// angular.module("starter").controller('PictureCtrl', function($scope, $cordovaCamera) {
-
-//   document.addEventListener("deviceready", function () {
-
-//     var options = {
-//       quality: 50,
-//       destinationType: Camera.DestinationType.DATA_URL,
-//       sourceType: Camera.PictureSourceType.CAMERA,
-//       allowEdit: true,
-//       encodingType: Camera.EncodingType.JPEG,
-//       targetWidth: 100,
-//       targetHeight: 100,
-//       popoverOptions: CameraPopoverOptions,
-//       saveToPhotoAlbum: false
-//     };
-
-//     $cordovaCamera.getPicture(options).then(function(imageData) {
-//       var image = document.getElementById('myImage');
-//       image.src = "data:image/jpeg;base64," + imageData;
-//     }, function(err) {
-//       // error
-//     });
-
-//   }, false);
-// });
 
 angular.module("starter").config(function($stateProvider, $urlRouterProvider) {
 
@@ -110,11 +53,11 @@ angular.module("starter").config(function($stateProvider, $urlRouterProvider) {
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  .state('login', {
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
-  })
+  // .state('login', {
+  //   url: '/login',
+  //   templateUrl: 'templates/login.html',
+  //   controller: 'LoginCtrl'
+  // })
 
   // setup an abstract state for the tabs directive
   .state('tab', {
@@ -198,6 +141,6 @@ angular.module("starter").config(function($stateProvider, $urlRouterProvider) {
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login'); // /tab/dash
+  $urlRouterProvider.otherwise('/tab/add'); // /tab/dash
 
 });

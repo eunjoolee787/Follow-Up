@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+  <meta charset="utf-8">
+    <script>
+      // Injected Ionic Go To URL Live Reload Plugin
+      window.LiveReloadPlugin_IonicGoToUrl = (function() {
+        var GOTO_KEY = "__ionic_goto_url__";
+        var HISTORY_GO_KEY = "__ionic_history_go__";
+        var GoToUrlPlugin = function(window, host) {
+          this.window = window;
+          this.host = host;
+        }
+        GoToUrlPlugin.identifier = "__ionic_goto_url__";
+        GoToUrlPlugin.version = "1.0";
+        GoToUrlPlugin.prototype.reload = function(path) {
+          try {
+            if(path) {
+              if(path.indexOf(GOTO_KEY) === 0) {
+                this.window.document.location = path.replace(GOTO_KEY, "");
+                return true;
+              }
+              if(path.indexOf(HISTORY_GO_KEY) === 0) {
+                this.window.document.history.go( parseInt(path.replace(HISTORY_GO_KEY, ""), 10));
+                return true;
+              }
+            }
+          } catch(e) {
+            console.log(e);
+          }
+          return false;
+        };
+        return GoToUrlPlugin;
+      })();
+    </script>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>FOLLOW UP</title>
+
+  <link href="css/ionic.app.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body ng-app="starter" class="grade-a platform-browser platform-macintel platform-ready">
+  
+
+
+<ion-nav-bar class="bar-positive nav-bar-container" nav-bar-transition="ios" nav-bar-direction="none" nav-swipe="">
+  <ion-nav-back-button class="hide"></ion-nav-back-button>
+<div class="nav-bar-block" nav-bar="cached"><ion-header-bar class="bar-positive bar bar-header disable-user-behavior" align-title="center"><button ng-click="$ionicGoBack($event)" class="button back-button hide buttons  button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
+  <span class="back-text"><span class="default-title">Back</span><span class="previous-title hide"></span></span></button><div class="title title-center header-item"></div></ion-header-bar></div><div class="nav-bar-block" nav-bar="active"><ion-header-bar class="bar-positive bar bar-header disable-user-behavior" align-title="center"><button ng-click="$ionicGoBack($event)" class="button back-button hide buttons  button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
+  <span class="back-text"><span class="default-title">Back</span><span class="previous-title hide"></span></span></button><div class="title title-center header-item">FOLLOW UP</div></ion-header-bar></div></ion-nav-bar>
+<!--
+  The views will be rendered in the <ion-nav-view> directive below
+  Templates are in the /templates folder (but you could also
+  have templates inline in this html file if you'd like).
+-->
+<ion-nav-view class="view-container" nav-view-transition="ios" nav-view-direction="none" nav-swipe=""><ion-view view-title="FOLLOW UP" name="login-view" class="pane" nav-view="active" style="-webkit-transition-duration: 0ms; transition-duration: 0ms; opacity: 1; -webkit-transform: translate3d(0%, 0px, 0px);">
+  <ion-content class="padding scroll-content ionic-scroll  has-header"><div class="scroll" style="-webkit-transform: translate3d(0px, 0px, 0px) scale(1);">
+    <form method="POST" action="/login">
+      <div class="list list-inset">
+          <label class="item item-input">
+              <input type="text" placeholder="Username" name="username" class="ng-pristine ng-untouched ng-valid">
+          </label>
+          <label class="item item-input">
+              <input type="password" placeholder="Password" name="password" class="ng-pristine ng-untouched ng-valid">
+          </label>
+      </div>
+      <h1>hello tony!</h1>
+      <button class="button button-block button-calm" type="submit">Login</button>
+    </form>
+  </div><div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out" style="-webkit-transform: translate3d(0px, 0px, 0px) scaleY(1); height: 0px;"></div></div></ion-content>
+</ion-view></ion-nav-view>
+
+<div class="backdrop"></div></body></html>
