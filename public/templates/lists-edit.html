@@ -1,0 +1,128 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+
+<ion-view view-title="EDIT">
+  <ion-content class="padding">
+
+<!--     <img ng-src="{{chat.face}}" style="width: 64px; height: 64px"> -->
+
+<div class="button-bar">
+  <a class="button button-balanced" value="save" ng-click="app.editPerson(prospect)"/>Save</a>
+</div>
+<!-- {{app.person}}  -->
+
+<label class="item item-input">
+  <span class="input-label">First name</span>
+  <input type="text" ng-model="prospect.firstname">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Last name</span>
+  <input type="text" ng-model="prospect.lastname">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Gender</span>
+  <input type="text" ng-model="prospect.gender">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Spouse First name</span>
+  <input type="text" ng-model="prospect.firstnameSpouse">
+</label>
+<label class="item item-input">
+  <span class="input-label">Spouse Last name</span>
+  <input type="text" ng-model="prospect.lastnameSpouse">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Spouse Gender</span>
+  <input type="text" ng-model="prospect.genderSpouse">
+</label>
+
+
+<label class="item item-input">
+<span class="input-label">Birthday</span>
+  <input type="date" ng-model="prospect.birthday">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Age</span>
+  <input type="text" ng-model="prospect.age">   
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Telephone</span> 
+  <input type="tel" ng-model="prospect.tel">   
+</label>
+
+
+<label class="item item-input">
+  <span class="input-label">Email</span>
+  <input type="email" ng-model="prospect.email">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Street</span> 
+  <input type="text" ng-model="prospect.street">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">City</span> 
+  <input type="text" ng-model="prospect.city">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">State</span> 
+  <input type="text" ng-model="prospect.state">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Zip</span> 
+  <input type="text" ng-model="prospect.zip">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Facebook</span> 
+  <input type="text" ng-model="prospect.facebook">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Instagram</span> 
+  <input type="text" ng-model="prospect.instagram">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Initial Date</span> 
+  <input type="date" ng-model="prospect.initialdate">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Contact Person</span> 
+  <input type="text" ng-model="prospect.contactperson">
+</label>
+
+<label class="item item-input">
+  <span class="input-label">Name of Event</span>
+  <input type="text" ng-model="prospect.nameofevent"> 
+</label>
+
+
+<ion-toggle  ng-model="prospect.previouslysaved" ng-change="app.toggle()">
+    Previously saved
+</ion-toggle>
+
+<ion-toggle  ng-model="prospect.previouslybaptized" ng-change="app.toggle()">
+    Previously baptized
+</ion-toggle>
+
+
+  <input type="hidden" ng-model="prospect.modifieddate"> 
+
+
+  </ion-content>
+</ion-view>

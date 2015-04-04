@@ -1,0 +1,277 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+
+
+
+<ion-view view-title="LISTS DETAIL">
+  <ion-content class="padding">
+
+<!--   <img ng-src="{{chat.face}}" style="width: 64px; height: 64px"> -->
+  <p class="lists-detail-name">
+    {{prospect.firstname}} {{prospect.lastname}}
+  </p>
+
+
+<!-- MAIN CONTACT -->
+<div class="item item-divider">
+  <p class="title-name">Main Contact</p>
+  <a class="edit" href="#tab/lists/{{prospect._id}}/edit"><button class="button button-icon icon ion-edit"></button></a>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Gender</span>
+    <p>
+      {{prospect.gender}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Spouse First Name</span>
+    <p>
+      {{prospect.firstnameSpouse}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Spouse Last Name</span>
+    <p>
+      {{prospect.lastnameSpouse}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Spouse Gender</span>
+    <p>
+      {{prospect.genderSpouse}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Birthday</span>
+    <p>
+      {{prospect.birthday | date:'MM-dd-yyyy'}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Age</span>   
+    <p>
+      {{prospect.age}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Telephone</span>  
+    <p>
+      {{prospect.tel}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Email</span>  
+    <p>
+      {{prospect.email}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Street</span> 
+    <p>
+      {{prospect.street}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">City</span> 
+    <p>
+      {{prospect.city}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">State</span> 
+    <p>
+      {{prospect.state}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Zip</span> 
+    <p>
+      {{prospect.zip}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Facebook</span> 
+    <p>
+      {{prospect.facebook}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Instagram</span> 
+    <p>
+      {{prospect.instagram}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Initial Date</span> 
+    <p>
+      {{prospect.initialdate | date:'MM-dd-yyyy'}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Contact Person</span> 
+    <p>
+      {{prospect.contactperson}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Name of Event</span> 
+    <p>
+      {{prospect.nameofevent}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Previously Saved</span>
+    <p>
+      {{prospect.previouslysaved}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Previously Baptized</span> 
+    <p>
+      {{prospect.previouslybaptized}}
+    </p>
+</div>
+
+<div class="item item-input modified-date" ng-show="prospect.modifieddate > prospect.createddate">
+<span class="input-label">Modified Date</span> 
+<!--     <p>
+      {{prospect.modifieddate | date: 'MM-dd-yyyy HH:mm:ss'}}
+    </p> -->
+    <p>
+      {{prospect.modifieddate | date: 'MM-dd-yyyy'}}
+    </p>
+</div>
+
+<!-- TYPE OF CONTACT -->
+<div class="item item-divider">
+  <p class="title-name">Type of Contact</p>
+  <a class="edit" href="#tab/lists/{{prospect._id}}/type"><button class="button button-icon icon ion-edit"></button></a>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Visit</span>
+    <p>
+      {{prospect.visit}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Letter</span>
+    <p>
+      {{prospect.letter}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Visited church</span>
+    <p>
+      {{prospect.visitchurch}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Phone call</span>
+    <p>
+      {{prospect.phonecall}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Emailed</span>
+    <p>
+      {{prospect.emailed}}
+    </p>
+</div>
+
+<div class="item item-input modified-date-type" ng-show="prospect.modifieddateType > prospect.createddate">
+<span class="input-label">Modified Date Type</span> 
+<!--     <p>
+      {{prospect.modifieddateType | date: 'MM-dd-yyyy HH:mm:ss'}}
+    </p> -->
+    <p>
+      {{prospect.modifieddateType | date: 'MM-dd-yyyy'}}
+    </p>
+</div>
+
+<!-- RECORD DECISION -->
+<div class="item item-divider">
+  <p class="title-name">Record Decision</p>
+  <a class="edit" href="#tab/lists/{{prospect._id}}/decision"><button class="button button-icon icon ion-edit"></button></a>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Save</span>
+    <p>
+      {{prospect.saved}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Baptized</span>
+    <p>
+      {{prospect.baptized}}
+    </p>
+</div>
+
+<div class="item item-input">
+<span class="input-label">Joined the church</span>
+    <p>
+      {{prospect.joinedthechurch}}
+    </p>
+</div>
+
+<div class="item item-input modified-date-decision" ng-show="prospect.modifieddateDecision > prospect.createddate">
+<span class="input-label">Modified Date Decision</span> 
+<!--     <p>
+      {{prospect.modifieddateDecision | date: 'MM-dd-yyyy HH:mm:ss'}}
+    </p> -->
+    <p>
+      {{prospect.modifieddateDecision | date: 'MM-dd-yyyy'}}
+    </p>
+</div>
+
+<!-- DELETE BUTTON AREA -->
+<body class="padding" ng-controller="PopupCtrl">
+  <button class="button button-block button-assertive" ng-click="showConfirm()">
+    Delete
+  </button>
+
+<!-- <div class="item item-divider">
+  <p class="title-name">Export Contact</p>
+  <a class="edit" href="#tab/lists/{{prospect._id}}/export"><button class="button button-icon icon ion-edit"></button></a>
+</div> -->
+<!-- SAVE EXPORT CSV FILE -->
+<!-- <button class="button button-block button-balanced" ng-click="exportRecord()">
+ Export
+</button> -->
+<button class="button button-block button-balanced" ng-click="exportRecord()" ng-href="{{csv_link}}">
+ Email CSV File
+</button>
+
+    
+
+  </ion-content>
+</ion-view>

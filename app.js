@@ -20,8 +20,8 @@ var CONNECTION_STRING = config.mongo;
 
 
 //MIDDLEWARE AREA
-// app.use(express.static('public'));//Tell express where to find static files
-app.use(express.static(__dirname, 'views'));//Tell express where to find static files
+app.use(express.static('public'));//Tell express where to find static files
+// app.use(express.static(__dirname, 'views'));//Tell express where to find static files
 // app.set('view engine', 'ejs');
 app.set('view engine', 'jade');
 app.use(session({ //in every session, verify user session
@@ -207,6 +207,7 @@ app.get('/prospects/:prospectId', function (req, res) {
   });
 
 app.get('/prospects/:prospectId/export', function (req, res) {
+  var prospectId = req.params.prospectId;
   function csvExport(prospect) {
     return '"' + String(prospect || "").replace(/\"/g, '""') + '"';
   } 
@@ -288,16 +289,16 @@ app.get('/prospects/:prospectId/export', function (req, res) {
   function send(response) {
     response.setHeader('Contact-information', 'attachment; filename=prospect.csv');
     response.contentType('csv');
-    response.write(headers + '\n');
+    response.write(prospectHeaders + '\n');
     sent = true;
   }
 
-  csvExport.find()
+  Prospect.findOne({'_id': prospectId})
   .sort('lastname')
   .stream()
-  .on('data', function(csvExport) {
+  .on('data', function(prospect) {
     if(!sent) {send(res); }
-    res.write(docToCSV(csvExport) + '\n');
+    res.write(docToCSV(prospect) + '\n');
   })
   .on('close', function () {
     res.end();
