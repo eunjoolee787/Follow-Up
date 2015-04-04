@@ -12,7 +12,7 @@ function sendMail(from, to, subject, text, callback){
     to: to,
     subject: subject,
     text: text,
-    attachments: [{'filename': 'prospect.txt', 'contents':data}]
+    attachments: [{'filename': 'prospect.csv', 'contents':data}]
   }, callback);//after sending
 
 }
