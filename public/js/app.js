@@ -24,6 +24,10 @@ angular.module('starter', ['ionic',
     }
   });
 
+document.addEventListener('deviceready', function () {
+    // cordova.plugins.email is now available
+}, false);
+
   // $rootScope.$on( '$stateChangeStart', function(e, toState  , toParams
   //                                                  , fromState, fromParams) {
   //       // console.log(toState);
@@ -66,6 +70,7 @@ angular.module("starter").config(function($stateProvider, $urlRouterProvider) {
     templateUrl: "templates/tabs.html",
     controller: "SessionCtrl as session"
   })
+
 
 //TAB-ADD.HTML
   .state('tab.add', {
