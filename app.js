@@ -257,6 +257,22 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
   ].map(csvExport).join(',');
 
   function docToCSV(prospect) {
+    var initialdate = prospect.initialdate;    
+    var modifieddate = prospect.modifieddate;
+    var modifieddateType = prospect.modifieddateType;
+    var modifieddateDecision = prospect.modifieddateDecision;
+    if(initialdate != null) {
+      initialdate = initialdate.toLocaleDateString();
+    }
+    if(modifieddate != null) {
+      modifieddate = modifieddate.toLocaleDateString();
+    }
+    if(modifieddateType != null) {
+      modifieddateType = modifieddateType.toLocaleDateString();
+    }
+    if(modifieddateDecision != null) {
+      modifieddateDecision = modifieddateDecision.toLocaleDateString();
+    }
     return [
     prospect.firstname,
     prospect.lastname,
@@ -274,15 +290,15 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
     prospect.zip,
     prospect.facebook,
     prospect.instagram,
-    prospect.initialdate,
+    initialdate,
     prospect.contactperson,
     prospect.nameofevent,
     prospect.previouslysaved,
     prospect.previouslybaptized,
     prospect.joinchurch,
-    prospect.modifieddate,
-    prospect.modifieddateType,
-    prospect.modifieddateDecision,
+    modifieddate,
+    modifieddateType,
+    modifieddateDecision,
     prospect.visit,
     prospect.letter,
     prospect.visitchurch,
