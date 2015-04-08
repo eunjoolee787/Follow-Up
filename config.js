@@ -1,5 +1,5 @@
 console.log("env:", process.env.SECRET);
-if (process.env.SECRET){
+if (process.env.SECRET != undefined){
   module.exports = {
     "port": process.env.PORT,
     "secret": process.env.SECRET,
