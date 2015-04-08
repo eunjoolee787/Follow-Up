@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var crypto = require('crypto');//stores the password & salt properly
-var config = require('../config');
+// var config = require('../config');
 
 //set up user model in the DB
 var userSchema = mongoose.Schema({
