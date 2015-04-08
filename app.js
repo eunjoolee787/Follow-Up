@@ -188,7 +188,7 @@ app.get('/', function (req, res, next) {
   // res.render('index');
   // res.render('../index.html');
   res.sendfile('./public/app.html');
-  next();
+//  next();
 },
 ensureAuthenticated, function (req, res) {
   // res.render('index');
