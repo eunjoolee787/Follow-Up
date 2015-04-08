@@ -1,3 +1,4 @@
+console.log("env:", process.env.SECRET);
 if (process.env.SECRET){
   module.exports = {
     "port": process.env.PORT,
