@@ -57,5 +57,8 @@ p.lists-detail-name {
   font-family: Arial;
 }
 
-
+button.button.button-clear {
+  color: #f1f1f1;
+  font-weight: 900;
+}
 
