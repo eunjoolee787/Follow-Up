@@ -184,16 +184,11 @@ app.get('/logout', function (req, res) {
   res.redirect('/login');
 });
 
-app.get('/', function (req, res, next) {
+app.get('/', ensureAuthenticated, function (req, res, next) {
   // res.render('index');
   // res.render('../index.html');
   res.sendfile('./public/app.html');
 //  next();
-},
-ensureAuthenticated, function (req, res) {
-  // res.render('index');
-  // res.render('../index.html');
-  // res.sendfile('./public/index.html');
 });
 
 app.get('/form', ensureAuthenticated, function (req, res) {
