@@ -3,5 +3,5 @@ module.exports = {
   "secret": process.env.SECRET,
   "mongo": process.env.MONGO,
   "salt": process.env.SALT,
-  "email": "user": process.env.EMAIL_USER, "pass": process.env.EMAIL_PASS},
+  "email": {"user": process.env.EMAIL_USER, "pass": process.env.EMAIL_PASS},
 }
