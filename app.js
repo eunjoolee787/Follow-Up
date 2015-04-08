@@ -7,7 +7,7 @@ var Prospect = require('./models/Prospect');
 var ejs = require('ejs');
 var cors = require('cors');
 var app = express();//Creates a new express instance
-var sendMail = require('./sendmail');//require email
+// var sendMail = require('./sendmail');//require email
 
 var session = require('express-session');// to keep track of users as they journey sites
 var flash = require ('connect-flash');//shows an error message
