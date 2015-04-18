@@ -253,10 +253,14 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
   ].map(csvExport).join(',');
 
   function docToCSV(prospect) {
+    var birthday = prospect.birthday;
     var initialdate = prospect.initialdate;    
     var modifieddate = prospect.modifieddate;
     var modifieddateType = prospect.modifieddateType;
     var modifieddateDecision = prospect.modifieddateDecision;
+    if(birthday != null) {
+      birthday = birthday.toLocaleDateString();
+    }
     if(initialdate != null) {
       initialdate = initialdate.toLocaleDateString();
     }
@@ -276,7 +280,7 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
     prospect.firstnameSpouse,
     prospect.lastnameSpouse,
     prospect.genderSpouse,
-    prospect.birthday,
+    birthday,
     prospect.age,
     prospect.tel,
     prospect.email,
@@ -364,7 +368,7 @@ app.post('/form', ensureAuthenticated, function (req, res) {
     firstnameSpouse: req.body.firstnameSpouse,
     lastnameSpouse: req.body.lastnameSpouse,
     genderSpouse: req.body.genderSpouse,
-    birthday: req.body.birthday,
+    birthday: new Date(),
     age: req.body.age,
     tel: req.body.tel, 
     email: req.body.email,
