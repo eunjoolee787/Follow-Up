@@ -74,6 +74,24 @@ angular.module("starter").config(function($stateProvider, $urlRouterProvider) {
 
 //TAB-ADD.HTML
   .state('tab.add', {
+    onEnter: function($ionicPlatform) {
+      $ionicPlatform.ready(function() {
+      if(window.cordova ){
+         cordova.plugins.Keyboard.disableScroll(true);
+      }
+
+   }); 
+  },
+  onExit: function($ionicPlatform){
+    $ionicPlatform.ready(function() {
+       if(window.cordova){
+         cordova.plugins.Keyboard.disableScroll(false);
+
+        }
+    });
+  }
+})
+    }
     url: '/add',
     views: {
       'tab-add': {
