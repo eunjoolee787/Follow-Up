@@ -89,9 +89,7 @@ angular.module("starter").config(function($stateProvider, $urlRouterProvider) {
 
         }
     });
-  }
-})
-    }
+  },
     url: '/add',
     views: {
       'tab-add': {
