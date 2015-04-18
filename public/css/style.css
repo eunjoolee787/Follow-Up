@@ -67,6 +67,8 @@ label {
   font-family: Arial;
 }
 
-span {
-   font-weight: bold;
+span.initial-date {
+  font-weight: bold;  
+  font-size: 15px;
+  font-family: Arial;
 }
