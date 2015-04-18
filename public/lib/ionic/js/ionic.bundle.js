@@ -404,10 +404,10 @@ window.ionic.version = '1.0.0-rc.0';
      * @returns {DOMElement} The element blurred or null
      */
     blurAll: function() {
-      if (document.activeElement && document.activeElement != document.body) {
-        document.activeElement.blur();
-        return document.activeElement;
-      }
+      // if (document.activeElement && document.activeElement != document.body) {
+      //   document.activeElement.blur();
+      //   return document.activeElement;
+      // }
       return null;
     },
 
