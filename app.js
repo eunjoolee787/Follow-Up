@@ -368,7 +368,7 @@ app.post('/form', ensureAuthenticated, function (req, res) {
     firstnameSpouse: req.body.firstnameSpouse,
     lastnameSpouse: req.body.lastnameSpouse,
     genderSpouse: req.body.genderSpouse,
-    birthday: new Date(),
+    birthday: req.body.birthday,
     age: req.body.age,
     tel: req.body.tel, 
     email: req.body.email,
