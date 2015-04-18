@@ -73,7 +73,11 @@ span.initial-date {
   font-family: Arial;
 }
 
-.iframe-wrapper {
+.ion-view.view-title {
+  font-size: 10px;
+}
+
+/*.iframe-wrapper {
   position: fixed;
   -webkit-overflow-scrolling: touch;
   overflow: scroll;
@@ -82,7 +86,7 @@ span.initial-date {
 iframe {
   height: 100%;
   width: 100%;
-}
+}*/
 
 /*.iframe-wrapper iframe {
    width: 100%;
