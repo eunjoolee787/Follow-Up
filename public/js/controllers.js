@@ -54,6 +54,18 @@ angular.module('starter.controllers', [])
     }
 })
 
+  // app.editPerson = function (person) {
+  //     $http.put("/prospects/"+$stateParams.prospectId, person)
+  //       .success(function (data) {
+  //         app.person = data;
+  //         console.log(data);
+  //         $ionicHistory.goBack();
+  //       })
+  //       .error(function (error) {
+  //         console.log(error);
+  //       })
+  //   }
+
 
 .controller('ProspectsCtrl', function($scope, Prospects) {
   
