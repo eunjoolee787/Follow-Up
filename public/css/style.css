@@ -62,3 +62,11 @@ button.button.button-clear {
   font-weight: 900;
 }
 
+label {
+  font-size: 15px;
+  font-family: Arial;
+}
+
+span {
+   font-weight: bold;
+}
