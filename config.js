@@ -6,6 +6,8 @@ if (process.env.SECRET !== undefined ){  // not a hard comparison
     "mongo": process.env.MONGO,
     "salt": process.env.SALT,
     "email": {"user": process.env.EMAIL_USER, "pass": process.env.EMAIL_PASS},
+    "sender": process.env.SENDER,
+    "recipient": process.env.RECIPIENT
   }
 } else {
   module.exports = require("./config.json");
