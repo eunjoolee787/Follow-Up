@@ -109,7 +109,6 @@ angular.module('starter.controllers', [])
 
    // Save Export CSV File
    $scope.exportRecord = function(prospectId) {
-    console.log("Marifel");
     $http.get("/prospects/"+prospectId+"/export")
       .success(function (data) {
         console.log(data);
@@ -119,42 +118,23 @@ angular.module('starter.controllers', [])
     });
    };
 
-   $scope.exportRecord2= function() {
-       var confirmPopup = $ionicPopup.confirm({
-         title: 'Email CSV File',
-         template: 'Are you sure you want to email this contact?'
-     });
-     confirmPopup.then(function(res) {
-       if(res) {
-    //   cordova.plugins.email.open({
-    //   to:      'max@mustermann.de',
-    //   cc:      'erika@mustermann.de',
-    //   bcc:     ['john@doe.com', 'jane@doe.com'],
-    //   subject: 'Greetings',
-    //   body:    'How are you? Nice greetings from Leipzig'
-    // });
-     cordova.plugins.email.open({
-        to:          Array, // email addresses for TO field
-        cc:          Array, // email addresses for CC field
-        bcc:         Array, // email addresses for BCC field
-        attachments: Array, // file paths or base64 data streams
-        subject:    String, // subject of the email
-        body:       String, // email body (for HTML, set isHtml to true)
-        isHtml:    Boolean, // indicats if the body is HTML or plain text
-      }, callback, scope);
-
-
-
-      $cordovaEmailComposer.open({
-        subject:     'Cordova Icon',
-        attachments: 'base64:icon.png//iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/...'
-      });
-
-       } else {
-         console.log('You are not sure');
-       }
-     });
-   };
+  $scope.emailRecord = function(prospectId) {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Email Record',
+      template: 'Are you sure you want to Email this contact?'
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        $http.get("/prospects/"+prospectId+"/email")
+        .success(function (data) {
+          console.log(data);
+        })
+        .error(function (error) {
+          console.log(error);
+        });
+      }
+    });  
+  };
 
 
    // $scope.exportRecord = function() {

@@ -259,13 +259,12 @@
     Delete
   </button>
 
-  <button class="button button-block button-balanced" ng-click="exportRecord(prospect._id)"> Export  
+  <a class="button button-block button-balanced" href="/prospects/{{prospect._id}}/export"> Download CSV
+  </a>
+
+  <button class="button button-block button-balanced" ng-click="emailRecord(prospect._id)"> Email CSV
   </button>
 
-
-<!-- <a class="button button-block button-balanced" ng-click="exportRecord()" href="/prospects/{{prospect._id}}/export">
- Export
-</a> -->
 
 
     <!-- LOGOUT BUTTON -->

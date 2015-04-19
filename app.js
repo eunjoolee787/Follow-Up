@@ -209,7 +209,8 @@ app.get('/prospects/:prospectId', ensureAuthenticated, function (req, res) {
       });
   });
 
-app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res) {
+app.get('/prospects/:prospectId/:csvAction', ensureAuthenticated, function (req, res) {
+  var csvAction = req.params.csvAction;
   var prospectId = req.params.prospectId;
   function csvExport(prospect) {
     return '"' + String(prospect || "").replace(/\"/g, '""') + '"';
@@ -321,13 +322,15 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
   .stream()
   .on('data', function(prospect) {
     if(!sent) {
-      sendMail("Your Prospect has been sent", "Here is the CSV that you've requested", prospectHeaders + '\n' + docToCSV(prospect), function(error, response) {
-        if(error) {
-          console.log(error);
-        } else {
-          console.log("Message sent!!");
-        }
-      });
+      if (csvAction === "email") {
+        sendMail("Your Prospect has been sent", "Here is the CSV that you've requested", prospectHeaders + '\n' + docToCSV(prospect), function(error, response) {
+          if(error) {
+            console.log(error);
+          } else {
+            console.log("Message sent!!");
+          }
+        });
+      }
       send(res); 
     }
     res.write(docToCSV(prospect) + '\n');
