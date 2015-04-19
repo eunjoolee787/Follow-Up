@@ -38,6 +38,9 @@ angular.module('starter.controllers', [])
   var app = this;
   app.people = [];
 
+  $scope.app = "";
+  $scope.clear = function () {$scope.app = "";};
+
     app.addPerson = function (person) {
       console.log(person);
       $http.post("/form", person)
@@ -70,7 +73,6 @@ angular.module('starter.controllers', [])
 .controller('ProspectsCtrl', function($scope, Prospects) {
   
   $scope.prospects = [];
-  console.log("tony");
   Prospects.all()
   .success(function (data) {
     console.log(data);

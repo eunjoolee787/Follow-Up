@@ -56,7 +56,7 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   },
   function(username, password, done) {
-    console.log(username, password);
+    // console.log(username, password);
     User.findOne({ username: username}, function (err, user) {
       if(err) {
         return done(err);
@@ -98,7 +98,6 @@ app.post('/validateUser', function(req, res) {
   }, 
   function (err, user) {
     if (user) {
-      console.log("Andrew");
       req.session.test = true;
       console.log(req.session);
       res.json({ success: true });
@@ -197,7 +196,7 @@ app.get('/form', ensureAuthenticated, function (req, res) {
 
 app.get('/prospects', ensureAuthenticated, function (req, res) {
   Prospect.find({}, function (err, prospects) {
-    console.log(req.session);
+    // console.log(req.session);
     res.json(prospects);
   });
 });
