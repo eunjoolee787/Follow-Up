@@ -38,15 +38,13 @@ angular.module('starter.controllers', [])
   var app = this;
   app.people = [];
 
-  $scope.app = "";
-  $scope.clear = function () {$scope.app = "";};
-
     app.addPerson = function (person) {
       console.log(person);
       $http.post("/form", person)
         .success(function (data) {
           app.people = data;
           console.log(data);
+          $scope.app = "";
         })
         .error(function (error) {
           console.log(error);
