@@ -84,7 +84,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('ProspectsDetailCtrl', function($scope, $stateParams, Prospects, $ionicPopup, $cordovaEmailComposer) {
+.controller('ProspectsDetailCtrl', function($scope, $stateParams, Prospects, $ionicPopup, $cordovaEmailComposer, $http) {
   $scope.prospect = {};
   Prospects.get($stateParams.prospectId)
   .then(function (response) {
@@ -108,7 +108,18 @@ angular.module('starter.controllers', [])
    };
 
    // Save Export CSV File
-   $scope.exportRecord= function() {
+   $scope.exportRecord = function(prospectId) {
+    console.log("Marifel");
+    $http.get("/prospects/"+prospectId+"/export")
+      .success(function (data) {
+        console.log(data);
+    })
+    .error(function (error) {
+      console.log(error);
+    });
+   };
+
+   $scope.exportRecord2= function() {
        var confirmPopup = $ionicPopup.confirm({
          title: 'Email CSV File',
          template: 'Are you sure you want to email this contact?'
@@ -131,6 +142,7 @@ angular.module('starter.controllers', [])
         body:       String, // email body (for HTML, set isHtml to true)
         isHtml:    Boolean, // indicats if the body is HTML or plain text
       }, callback, scope);
+
 
 
       $cordovaEmailComposer.open({

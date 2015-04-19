@@ -7,7 +7,7 @@ var Prospect = require('./models/Prospect');
 var ejs = require('ejs');
 var cors = require('cors');
 var app = express();//Creates a new express instance
-// var sendMail = require('./sendmail');//require email
+var sendMail = require('./sendmail');//require email
 
 var session = require('express-session');// to keep track of users as they journey sites
 var flash = require ('connect-flash');//shows an error message
@@ -206,7 +206,6 @@ app.get('/prospects/:prospectId', ensureAuthenticated, function (req, res) {
 
     Prospect.findOne ({'_id': prospectId}, function (err, prospect) {
       res.json(prospect);
-      // sendMail('vohnlmedia808@gmail.com', prospect.email, "Your Prospect has been sent", JSON.stringify(prospect));
       });
   });
 
@@ -321,7 +320,16 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
   .sort('lastname')
   .stream()
   .on('data', function(prospect) {
-    if(!sent) {send(res); }
+    if(!sent) {
+      sendMail("Your Prospect has been sent", "Here is the CSV that you've requested", prospectHeaders + '\n' + docToCSV(prospect), function(error, response) {
+        if(error) {
+          console.log(error);
+        } else {
+          console.log("Message sent!!");
+        }
+      });
+      send(res); 
+    }
     res.write(docToCSV(prospect) + '\n');
   })
   .on('close', function () {

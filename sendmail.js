@@ -2,17 +2,20 @@ var nodemailer = require('nodemailer');
 var config = require("./config");
 var transporter = nodemailer.createTransport({
   service: 'gmail',
-  auth: config.email  
+  auth: config.email
 });
 
 
-function sendMail(from, to, subject, text, callback){
+function sendMail(subject, text, data, callback){
   transporter.sendMail({
-    from: from,
-    to: to,
+    from: config.sender,
+    to: config.recipient,
     subject: subject,
     text: text,
-    attachments: [{'filename': 'prospect.csv', 'contents':data}]
+    attachments: [{
+      'filename': 'prospect.csv',
+      'content': data
+    }]
   }, callback);//after sending
 
 }
