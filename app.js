@@ -209,8 +209,7 @@ app.get('/prospects/:prospectId', ensureAuthenticated, function (req, res) {
       });
   });
 
-app.get('/prospects/:prospectId/:csvAction', ensureAuthenticated, function (req, res) {
-  var csvAction = req.params.csvAction;
+app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res) {
   var prospectId = req.params.prospectId;
   function csvExport(prospect) {
     return '"' + String(prospect || "").replace(/\"/g, '""') + '"';
@@ -322,15 +321,6 @@ app.get('/prospects/:prospectId/:csvAction', ensureAuthenticated, function (req,
   .stream()
   .on('data', function(prospect) {
     if(!sent) {
-      if (csvAction === "email") {
-        sendMail("Your Prospect has been sent", "Here is the CSV that you've requested", prospectHeaders + '\n' + docToCSV(prospect), function(error, response) {
-          if(error) {
-            console.log(error);
-          } else {
-            console.log("Message sent!!");
-          }
-        });
-      }
       send(res); 
     }
     res.write(docToCSV(prospect) + '\n');
@@ -343,6 +333,18 @@ app.get('/prospects/:prospectId/:csvAction', ensureAuthenticated, function (req,
   });
 
   });
+
+app.post('/sendMail', ensureAuthenticated, function (req, res) {
+  sendMail("Your Prospect has been sent", "Here is the CSV that you've requested", req.body.csvContents, function(error, response) {
+    if(error) {
+      console.log(error);
+      res.json({success: false});
+    } else {
+      console.log("Message sent!!");
+      res.json({success: true});
+    }
+  });
+});
 
 
 app.get('/prospects/:prospectId/edit', ensureAuthenticated, function (req, res) {

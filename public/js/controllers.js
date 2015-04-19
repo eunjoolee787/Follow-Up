@@ -121,17 +121,53 @@ angular.module('starter.controllers', [])
   $scope.emailRecord = function(prospectId) {
     var confirmPopup = $ionicPopup.confirm({
       title: 'Email Record',
-      template: 'Are you sure you want to Email this contact?'
+      template: 'Are you sure you want to email this contact?'
     });
     confirmPopup.then(function(res) {
       if(res) {
-        $http.get("/prospects/"+prospectId+"/email")
-        .success(function (data) {
-          console.log(data);
-        })
-        .error(function (error) {
-          console.log(error);
-        });
+        $http.get("/prospects/"+prospectId+"/export")
+          .success(function (data) {
+            if(data) { //if export is success, send an email
+              $http.post('/sendMail', {
+                csvContents: data
+              })
+                .success(function(isEmailSent) { 
+                  if(isEmailSent.success) {
+                    $ionicPopup.alert({
+                      title: "Success Sending Email",
+                      template: "You have successfully sent an email containing the CSV file."
+                    })
+                    .then(function(res2) {
+                      console.log("Success sending email");
+                    });
+                  }
+                  else {
+                    $ionicPopup.alert({
+                      title: "Failure Sending Email",
+                      template: "Something went wrong when sending the email. Please try again."
+                    })
+                    .then(function(res3) {
+                      console.log("Failed to send email");
+                    })
+                  }
+                })
+                .error(function (err) {
+                  console.log(err);
+                });
+            }
+            else {//if export is not successful, alert the user
+              $ionicPopup.alert({
+                title: "Email Was Not Sent",
+                template: "Something went wrong when exporting the CSV file, so an email was not sent. Please try again."
+              })
+              .then(function(res4) {
+                console.log("Failed to export CSV for email");
+              });
+            }
+          })
+          .error(function (error) {
+            console.log(error);
+          });
       }
     });  
   };
