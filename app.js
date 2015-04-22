@@ -237,7 +237,6 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
     "previouslybaptized",
     "modifieddate",
     "modifieddateType",
-    "modifieddateDecision",
     "visit",
     "letter",
     "visitchurch",
@@ -246,6 +245,7 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
     "saved",
     "baptized",
     "joinedthechurch"
+    "modifieddateDecision",
   ].map(csvExport).join(',');
 
   function docToCSV(prospect) {
@@ -293,7 +293,6 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
     prospect.previouslybaptized,
     modifieddate,
     modifieddateType,
-    modifieddateDecision,
     prospect.visit,
     prospect.letter,
     prospect.visitchurch,
@@ -301,7 +300,8 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
     prospect.emailed,
     prospect.saved,
     prospect.baptized,
-    prospect.joinedthechurch  
+    prospect.joinedthechurch
+    modifieddateDecision,  
     ].map(csvExport).join(',');
   }
 
