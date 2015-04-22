@@ -243,16 +243,12 @@
   <!-- EMAIL CSV -->
   <div class="item item-divider">
     <p class="title-name">Email CSV</p>
-    <p class="email-csv"><button class="button button-icon"></button></p>
+    <a class="edit"><button class="button button-icon icon ion-email" ng-click="emailRecord(prospect._id, recipientEmail)"></button></a> 
   </div>
 
   <div class="item item-input">
     <input type="text" placeholder="Enter Your Recipient's Email Address" ng-model="recipientEmail">
   </div>
-
-  <!-- EMAIL CSV -->
-  <button class="button button-block button-balanced" ng-click="emailRecord(prospect._id, recipientEmail)"> Email CSV
-  </button>
 
   <!-- DOWNLOAD CSV -->
   <a class="button button-block button-balanced" href="/prospects/{{prospect._id}}/export"> Download CSV</a>
