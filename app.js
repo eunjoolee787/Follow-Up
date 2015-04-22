@@ -332,7 +332,7 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
   });
 
 app.post('/sendMail', ensureAuthenticated, function (req, res) {
-  sendMail("Your Prospect has been sent", "Here is the CSV that you've requested", req.body.csvContents, function(error, response) {
+  sendMail("Your Prospect has been sent", "Here is the CSV that you've requested", req.body.csvContents, req.body.recipient, function(error, response) {
     if(error) {
       console.log(error);
       res.json({success: false});

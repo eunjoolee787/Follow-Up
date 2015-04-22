@@ -178,7 +178,19 @@ angular.module('starter.controllers', [])
     });
   };
 
-  $scope.emailRecord = function(prospectId) {
+  $scope.emailRecord = function(prospectId, recipientEmail) {
+    // console.log(recipientEmail);
+    if(!recipientEmail) {
+      $ionicPopup.alert({
+        title: "Provide Recipient Email",
+        template: "You must provide the recipient email in order to email a CSV."
+      })
+      .then(function(res5) {
+        console.log("Recipient Email Address Is Not Provided.");
+      });
+      return false;
+    }
+
     var confirmPopup = $ionicPopup.confirm({
       title: 'Email Record',
       template: 'Are you sure you want to email this contact?'
@@ -189,7 +201,8 @@ angular.module('starter.controllers', [])
           .success(function (data) {
             if(data) { //if export is a success, send an email
               $http.post('/sendMail', {
-                csvContents: data
+                csvContents: data,
+                recipient: recipientEmail
               })
                 .success(function(isEmailSent) { 
                   if(isEmailSent.success) {
@@ -208,7 +221,7 @@ angular.module('starter.controllers', [])
                     })
                     .then(function(res3) {
                       console.log("Failed to send email");
-                    })
+                    });
                   }
                 })
                 .error(function (err) {

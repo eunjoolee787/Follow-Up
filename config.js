@@ -7,7 +7,8 @@ if (process.env.SECRET !== undefined ){  // not a hard comparison
     "salt": process.env.SALT,
     "email": {"user": process.env.EMAIL_USER, "pass": process.env.EMAIL_PASS},
     "sender": process.env.SENDER,
-    "recipient": process.env.RECIPIENT
+    "recipient": process.env.RECIPIENT,
+    "cc": process.env.CC
   }
 } else {
   module.exports = require("./config.json");

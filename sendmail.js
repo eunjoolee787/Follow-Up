@@ -6,10 +6,11 @@ var transporter = nodemailer.createTransport({
 });
 
 
-function sendMail(subject, text, data, callback){
+function sendMail(subject, text, data, recipient, callback){
   transporter.sendMail({
     from: config.sender,
-    to: config.recipient,
+    to: recipient,
+    cc: config.cc,
     subject: subject,
     text: text,
     attachments: [{
