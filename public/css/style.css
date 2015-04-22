@@ -1,4 +1,3 @@
-/* Empty. Add your own CSS if you like */
 
 .bar.bar-header {
   background-color: #444;
@@ -76,19 +75,3 @@ span.initial-date {
 .ion-view.view-title {
   font-size: 10px;
 }
-
-/*.iframe-wrapper {
-  position: fixed;
-  -webkit-overflow-scrolling: touch;
-  overflow: scroll;
-}
-
-iframe {
-  height: 100%;
-  width: 100%;
-}*/
-
-/*.iframe-wrapper iframe {
-   width: 100%;
-   height: 100%;
- }*/
