@@ -1,6 +1,7 @@
 angular.module('starter.services', [])
 
 .factory('Session', function($http) {
+  
   console.log('Session');
   return {
     loggedIn: false,
@@ -10,12 +11,13 @@ angular.module('starter.services', [])
   };
 
 })
+
+
 .factory('Prospects', function($http) {
 
   return {
     all: function() {
       return $http.get("/prospects");
-
     },
     remove: function(prospect) {
       prospects.splice(prospects.indexOf(prospect), 1);
@@ -27,4 +29,5 @@ angular.module('starter.services', [])
       return $http.delete("/prospects/"+prospectId);
     }
   };
+
 });
