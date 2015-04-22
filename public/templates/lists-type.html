@@ -21,20 +21,22 @@
       <ion-toggle  ng-model="prospect.emailed" ng-change="app.toggle()">
           Emailed
       </ion-toggle>
-    </div>
+
 
   <input type="hidden" ng-model="prospect.modifieddateType"> 
     
-<!-- SAVE BUTTON -->
-  <div class="button-bar">
-    <a class="button button-balanced" value="save" ng-click="app.editPerson(prospect)">Save</a>
-  </div>
+    <!-- SAVE BUTTON -->
+    <div class="button-bar">
+      <a class="button button-balanced" value="save" ng-click="app.editPerson(prospect)">Save</a>
+    </div>
 
-<!-- LOGOUT BUTTON -->
-  <div class="button-bar">
-    <a class="button button-positive" value="Log out" href="/logout"/>Logout</a>
-  </div>
+    <!-- LOGOUT BUTTON -->
+    <div class="button-bar">
+      <a class="button button-positive" value="Log out" href="/logout"/>Logout</a>
+    </div>
 
+  </div>
+  
   </ion-content>
 </ion-view>
 

@@ -1,5 +1,6 @@
 <ion-view view-title="RECORD DECISION">
   <ion-content>
+
     <div class="list">
       <ion-toggle  ng-model="prospect.saved" ng-change="app.toggle()">
           Saved
@@ -12,19 +13,20 @@
       <ion-toggle  ng-model="prospect.joinedthechurch" ng-change="app.toggle()">
           Joined the church
       </ion-toggle>
+
+      <input type="hidden" ng-model="prospect.modifieddateDecision"> 
+
+      <!-- SAVE BUTTON -->
+      <div class="button-bar">
+        <a class="button button-balanced" value="save" ng-click="app.editPerson(prospect)">Save</a>
+      </div>
+
+      <!-- LOGOUT BUTTON -->
+      <div class="button-bar">
+        <a class="button button-positive" value="Log out" href="/logout"/>Logout</a>
+      </div>
+
     </div>
-
-  <input type="hidden" ng-model="prospect.modifieddateDecision"> 
-
-    <!-- save button-->
-  <div class="button-bar">
-    <a class="button button-balanced" value="save" ng-click="app.editPerson(prospect)">Save</a>
-  </div>
-  <!-- {{app.person}}  -->
-    <!-- LOGOUT BUTTON -->
-  <div class="button-bar">
-    <a class="button button-positive" value="Log out" href="/logout"/>Logout</a>
-  </div>
-
+     
   </ion-content>
 </ion-view>
