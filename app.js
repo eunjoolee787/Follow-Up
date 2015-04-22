@@ -244,8 +244,8 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
     "emailed",
     "saved",
     "baptized",
-    "joinedthechurch"
-    "modifieddateDecision",
+    "joinedthechurch",
+    "modifieddateDecision"
   ].map(csvExport).join(',');
 
   function docToCSV(prospect) {
@@ -300,8 +300,8 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
     prospect.emailed,
     prospect.saved,
     prospect.baptized,
-    prospect.joinedthechurch
-    modifieddateDecision,  
+    prospect.joinedthechurch,
+    modifieddateDecision
     ].map(csvExport).join(',');
   }
 
