@@ -196,7 +196,6 @@ app.get('/form', ensureAuthenticated, function (req, res) {
 
 app.get('/prospects', ensureAuthenticated, function (req, res) {
   Prospect.find({}, function (err, prospects) {
-    // console.log(req.session);
     res.json(prospects);
   });
 });
@@ -413,16 +412,18 @@ app.post('/form', ensureAuthenticated, function (req, res) {
   });
 });
 
-// app.get('/prospects/:prospectId/edit', function (req, res) {
-//   console.log(req.params.id);
-//   Prospect.findById(req.params.id, function (err, prospect) {
-//     if (err) {
-//       throw err;
-//     } var locals = {
-//       firstname: prospect.firstname,
-//       lastname: prospect.lastname
-//     };
-//     res.render('prospect_edit', locals);
+
+//POST - SAVE AREA
+//saveMail
+// app.post('/saveMail', ensureAuthenticated, function (req, res) {
+//   saveMail("Your Prospect has been saved", "Here is the Contact that you've requested", req.body.saveContents, function(error, response) {
+//     if(error) {
+//       console.log(error);
+//       res.json({success: false});
+//     } else {
+//       console.log("Contact saved!");
+//       res.json({success: true});
+//     }
 //   });
 // });
 
@@ -438,7 +439,7 @@ app.delete('/prospects/:prospectId', ensureAuthenticated, function (req, res) {
 });
 
 module.exports.app = app;
-// module.exports = config;
+
 
 
 app.listen(process.env.PORT || 4000);
