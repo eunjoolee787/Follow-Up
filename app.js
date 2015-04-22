@@ -332,6 +332,13 @@ app.get('/prospects/:prospectId/export', ensureAuthenticated, function (req, res
   });
 
 app.post('/sendMail', ensureAuthenticated, function (req, res) {
+  function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
+  }
+  if(!validateEmail(req.body.recipient)) {
+    return res.json({success: false});
+  } 
   sendMail("Your Prospect has been sent", "Here is the CSV that you've requested", req.body.csvContents, req.body.recipient, function(error, response) {
     if(error) {
       console.log(error);
