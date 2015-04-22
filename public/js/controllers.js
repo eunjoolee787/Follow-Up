@@ -252,11 +252,6 @@ angular.module('starter.controllers', [])
      } else {
       $scope.prospect.previouslybaptized = false;
      }
-      if ($scope.prospect.joinchurch === "true"){
-       $scope.prospect.joinchurch = true;
-     } else {
-      $scope.prospect.joinchurch = false;
-     }
     $scope.prospect.modifieddate = new Date();
     console.log(response.data);
   })
