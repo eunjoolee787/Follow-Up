@@ -2,41 +2,45 @@ angular.module('starter.controllers', [])
 
 //LOGIN
 .controller('LoginCtrl', function($scope, Session, $state, $ionicPopup) {
-    $scope.data = {};
-    $scope.login = Session.login;
-    $scope.login = function() {
-      Session.login ({username: $scope.data.username, password: $scope.data.password}) 
-      .success(function(data) {
-          if(data.success) {
-            console.log(Session.loggedIn);
-            Session.loggedIn = true;
-            $state.go('tab.add');
-            console.log(Session.loggedIn);
-          }
-          else {
-            var alertPopup = $ionicPopup.alert({
-              title: 'Login failed!',
-              template: 'Please check your credentials!'
-            });
-          }
-        })
-        .error(function (error) {
-          console.log(error);
-        });
-    }
+  $scope.data = {};
+  $scope.login = Session.login;
+  $scope.login = function() {
+    Session.login ({username: $scope.data.username, password: $scope.data.password}) 
+    .success(function(data) {
+        if(data.success) {
+          console.log(Session.loggedIn);
+          Session.loggedIn = true;
+          $state.go('tab.add');
+          console.log(Session.loggedIn);
+        }
+        else {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Login failed!',
+            template: 'Please check your credentials!'
+          });
+        }
+    })
+    .error(function (error) {
+      console.log(error);
+    });
+  }
 })
 
 .controller('SessionCtrl', function($scope) {
-    console.log("session");
-
-    loggedIn: false,
-    $scope.data = {};
+  console.log("session");
+  loggedIn: false,
+  $scope.data = {};
 })
 
 //ADD
-.controller('DashCtrl', function($http, $scope) {
+.controller('DashCtrl', function($http, $scope, $ionicPopup, Prospects) {
   var app = this;
   app.people = [];
+  // $scope.prospect = {};
+  // Prospects.get($stateParams.prospectId)
+  // .then(function (response) {
+  //   $scope.prospect = response.data;
+  // })
 
     app.addPerson = function (person) {
       console.log(person);
@@ -55,19 +59,76 @@ angular.module('starter.controllers', [])
     }
 })
 
-  // app.editPerson = function (person) {
-  //     $http.put("/prospects/"+$stateParams.prospectId, person)
-  //       .success(function (data) {
-  //         app.person = data;
-  //         console.log(data);
-  //         $ionicHistory.goBack();
-  //       })
-  //       .error(function (error) {
-  //         console.log(error);
-  //       })
-  //   }
+   // // // A save dialog
+   // $scope.showConfirm = function() {
+   //   var confirmPopup = $ionicPopup.confirm({
+   //     title: 'Save',
+   //     template: 'Are you sure you want to save this contact?'
+   //   });
+   //   confirmPopup.then(function(res) {
+   //    console.log(res);
+   //     if(res) {
+   //       Prospects.save($stateParams.prospectId)
+   //     } else {
+   //       console.log('You are not sure?');
+   //     }
+   //   });
+   // };
+
+// $scope.saveConfirm = function(prospectId) {
+//   var confirmPopup = $ionicPopup.confirm({
+//     title: "Save Record",
+//     template: "Are you sure you want to save this contact?"
+//   });
+//   confirmPopup.then(function(res) {
+//     if(res) {
+//       $http.get("/prospects/"+prospectId+"", person)
+//         .success(function (data) {
+//           if(data) {//if contact is saved successfully, let user know
+//             $http.post('/saveMail', {
+//               saveContents: data
+//             })
+//             .success(function(isContactSave) {
+//               if(isContactSave) {
+//                 $ionicPopup.alert({
+//                   title: "Success Saving Contact",
+//                   template: "You have successfully saved a contact."
+//                 })
+//                 .then(function(res2) {
+//                   console.log("Success saving contact");
+//                 });
+//               } else {
+//                 $ionicPopup.alert({
+//                   title: "Failure to save contact",
+//                   template: "Something went wrong when saving the contact. Please try again."
+//                 })
+//                 .then(function(res3) {
+//                   console.log("Failed to save contact");
+//                 })
+//               }
+//             })
+//             .error(function (err) {
+//               console.log(err);
+//             });
+//           } else {//if save is not successful, alert the user
+//             $ionicPopup.alert({
+//               title: "Contact Was Not Saved",
+//               template: "Something went wrong when saving the contact, so the contact was not saved.  Please try again."
+//             })
+//             .then(function(res4) {
+//               console.log("Failed to save contact");
+//             });
+//           }
+//         })
+//         .error(function (error) {
+//           console.log(error);
+//         });
+//       }
+//     });
+//   };
 
 
+//PROSPECTS
 .controller('ProspectsCtrl', function($scope, Prospects) {
   
   $scope.prospects = [];
@@ -80,10 +141,9 @@ angular.module('starter.controllers', [])
   .error(function (error) {
     console.log(error);
   });
-
 })
 
-
+//PROSPECTS DETAIL
 .controller('ProspectsDetailCtrl', function($scope, $stateParams, Prospects, $ionicPopup, $cordovaEmailComposer, $http) {
   $scope.prospect = {};
   Prospects.get($stateParams.prospectId)
@@ -107,16 +167,16 @@ angular.module('starter.controllers', [])
      });
    };
 
-   // Save Export CSV File
-   $scope.exportRecord = function(prospectId) {
+  // Save Export CSV File
+  $scope.exportRecord = function(prospectId) {
     $http.get("/prospects/"+prospectId+"/export")
       .success(function (data) {
         console.log(data);
-    })
+      })
     .error(function (error) {
       console.log(error);
     });
-   };
+  };
 
   $scope.emailRecord = function(prospectId) {
     var confirmPopup = $ionicPopup.confirm({
@@ -127,7 +187,7 @@ angular.module('starter.controllers', [])
       if(res) {
         $http.get("/prospects/"+prospectId+"/export")
           .success(function (data) {
-            if(data) { //if export is success, send an email
+            if(data) { //if export is a success, send an email
               $http.post('/sendMail', {
                 csvContents: data
               })
@@ -168,40 +228,13 @@ angular.module('starter.controllers', [])
           .error(function (error) {
             console.log(error);
           });
-      }
-    });  
-  };
+        }
+      });  
+    };
 
+  })
 
-   // $scope.exportRecord = function() {
-   //  subject: "Display contact",
-   //  to:[$scope.sendEmailname],
-   //  attachements: [$scope.prospectId]
-   // },
-   // function() {
-   //  console.log('email view dismissed');
-   // },
-   // this
-   // );
-
-  // $http({method: 'GET', url:"/prospects/"+$stateParams.prospectId})
-  //   .success(function(data, status, headers, config) {
-  //     var element = angular.element('<a/>');
-  //     element.attr({
-  //       href: 'data:attachment/csv;charset=utf-8,' + encodeURI(data),
-  //       target: '_blank',
-  //       download: 'filename.csv'
-  //     })[0].click();
-  //   }).
-  //   error(function(data, status, headers, config) {
-
-  //   });
-
-})
-
-
-
-
+//PROSPECTS EDIT
 .controller('ProspectsEditCtrl', function($scope, $stateParams, Prospects, $http, $ionicHistory) {
  var app = this;
 
@@ -229,50 +262,24 @@ angular.module('starter.controllers', [])
   })
 
   app.editPerson = function (person) {
-      $http.put("/prospects/"+$stateParams.prospectId, person)
-        .success(function (data) {
-          app.person = data;
-          console.log(data);
-          $ionicHistory.goBack();
-        })
-        .error(function (error) {
-          console.log(error);
-        })
+    $http.put("/prospects/"+$stateParams.prospectId, person)
+      .success(function (data) {
+        app.person = data;
+        console.log(data);
+        $ionicHistory.goBack();
+      })
+      .error(function (error) {
+        console.log(error);
+      })
     }
-
     app.toggle = function () {
     console.log("toggle");
-  }
-  // $scope.today = new Date();
+    }
 })
 
+//PROSPECTS TYPE
 .controller('ProspectsTypeCtrl', function($scope, $stateParams, Prospects, $http, $ionicHistory) {
   var app = this;
-
-  // $scope.doRefresh = function() {
-  //   Prospects.get($stateParams.prospectId)
-  //   .then(function (response) {
-  //      {
-  //      $scope.prospect = response.data;
-  //       if ($scope.prospect.visit === "true"){
-  //        $scope.prospect.visit = true;
-  //      } else {
-  //       $scope.prospect.visit = false;
-  //      }
-  //      if ($scope.prospect.letter === "true"){
-  //        $scope.prospect.letter = true;
-  //      } else {
-  //       $scope.prospect.letter = false;
-  //      }
-  //      if ($scope.prospect.visitchurch === "true"){
-  //        $scope.prospect.visitchurch = true;
-  //      } else {
-  //       $scope.prospect.visitchurch = false;
-  //      }
-  //      $scope.$broadcast('scroll.refreshComplete');
-  //     }
-  //   });
-  // };
 
   $scope.prospect = {};
   Prospects.get($stateParams.prospectId)
@@ -308,29 +315,22 @@ angular.module('starter.controllers', [])
   })
 
   app.editPerson = function (person) {
-      $http.put("/prospects/"+$stateParams.prospectId, person)
-        .success(function (data) {
-          // app.people = data;
-          app.person = data;
-          console.log(data);
-        // $scope.state.go('tab.lists-detail');
-        // $ionicGoBack($event);
-        // $rootScope.$viewHistory.currentView = $rootScope.$viewHistory.backView;
-        // $state.go('tab.lists-detail');
-        $ionicHistory.goBack();
-        })
-        .error(function (error) {
-          console.log(error);
-        })
-    }
-    // this.toggle = true;
-    app.toggle = function () {
-    console.log("toggle");
-    // return this.toggle;
+  $http.put("/prospects/"+$stateParams.prospectId, person)
+    .success(function (data) {
+      app.person = data;
+      console.log(data);
+    $ionicHistory.goBack();
+    })
+    .error(function (error) {
+      console.log(error);
+    })
   }
-    // $scope.today = new Date();
+  app.toggle = function () {
+  console.log("toggle");
+  }
 })
 
+//PROSPECTS DECISION
 .controller('ProspectsDecisionCtrl', function($scope, $stateParams, Prospects, $http, $ionicHistory) {
   var app = this;
 
@@ -358,27 +358,25 @@ angular.module('starter.controllers', [])
   })
 
   app.editPerson = function (person) {
-      $http.put("/prospects/"+$stateParams.prospectId, person)
-        .success(function (data) {
-          // app.people = data;
-          app.person = data;
-          console.log(data);
-          $ionicHistory.goBack();
-        })
-        .error(function (error) {
-          console.log(error);
-        })
+    $http.put("/prospects/"+$stateParams.prospectId, person)
+      .success(function (data) { 
+        app.person = data;
+        console.log(data);
+        $ionicHistory.goBack();
+      })
+      .error(function (error) {
+        console.log(error);
+      })
     }
-
     app.toggle = function () {
     console.log("toggle");
-  }
-    // $scope.today = new Date();
-})
+    }
+  })
 
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
+// //FRIENDS
+// .controller('AccountCtrl', function($scope) {
+//   $scope.settings = {
+//     enableFriends: true
+//   };
+// });
