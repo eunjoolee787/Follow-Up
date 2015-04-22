@@ -26,25 +26,7 @@ angular.module('starter', ['ionic',
 
 document.addEventListener('deviceready', function () {
     // cordova.plugins.email is now available
-}, false);
-
-  // $rootScope.$on( '$stateChangeStart', function(e, toState  , toParams
-  //                                                  , fromState, fromParams) {
-  //       // console.log(toState);
-  //       var isLogin = Session.loggedIn;
-  //       if(isLogin){
-  //          return; // no need to redirect 
-  //       }
-
-  //       // now, redirect only not authenticated
-
-  //       // var userInfo = authenticationSvc.getUserInfo();
-
-  //       if(isLogin === false && toState.name != "login") {
-  //           e.preventDefault(); // stop current execution
-  //           $state.go('login'); // go to login
-  //       }
-  //   });
+  }, false);
 })
 
 
@@ -57,12 +39,6 @@ angular.module("starter").config(function($stateProvider, $urlRouterProvider) {
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  // .state('login', {
-  //   url: '/login',
-  //   templateUrl: 'templates/login.html',
-  //   controller: 'LoginCtrl'
-  // })
-
   // setup an abstract state for the tabs directive
   .state('tab', {
     url: "/tab",
@@ -74,22 +50,6 @@ angular.module("starter").config(function($stateProvider, $urlRouterProvider) {
 
 //TAB-ADD.HTML
   .state('tab.add', {
-  //   onEnter: function($ionicPlatform) {
-  //     $ionicPlatform.ready(function() {
-  //     if(window.cordova ){
-  //        cordova.plugins.Keyboard.disableScroll(true);
-  //     }
-
-  //  }); 
-  // },
-  // onExit: function($ionicPlatform){
-  //   $ionicPlatform.ready(function() {
-  //      if(window.cordova){
-  //        cordova.plugins.Keyboard.disableScroll(false);
-
-  //       }
-  //   });
-  // },
     url: '/add',
     views: {
       'tab-add': {
@@ -110,47 +70,48 @@ angular.module("starter").config(function($stateProvider, $urlRouterProvider) {
       }
     })
 
-    .state('tab.lists-detail', {
-      url: '/lists/:prospectId',
-      cache: false,
-      views: {
-        'tab-lists': {
-          templateUrl: 'templates/lists-detail.html',
-          controller: 'ProspectsDetailCtrl as app'
-        }
+  .state('tab.lists-detail', {
+    url: '/lists/:prospectId',
+    cache: false,
+    views: {
+      'tab-lists': {
+        templateUrl: 'templates/lists-detail.html',
+        controller: 'ProspectsDetailCtrl as app'
       }
-    })
+    }
+  })
 
-    .state('tab.lists-edit', {
-      url: '/lists/:prospectId/edit',
-      cache: false,
-      views: {
-        'tab-lists': {
-          templateUrl: 'templates/lists-edit.html',
-          controller: 'ProspectsEditCtrl as app'
-        }
+  .state('tab.lists-edit', {
+    url: '/lists/:prospectId/edit',
+    cache: false,
+    views: {
+      'tab-lists': {
+        templateUrl: 'templates/lists-edit.html',
+        controller: 'ProspectsEditCtrl as app'
       }
-    })
+    }
+  })
 
-    .state('tab.lists-type', {
-      url: '/lists/:prospectId/type',
-      views: {
-        'tab-lists': {
-          templateUrl: 'templates/lists-type.html',
-          controller: 'ProspectsTypeCtrl as app'
-        }
+  .state('tab.lists-type', {
+    url: '/lists/:prospectId/type',
+    views: {
+      'tab-lists': {
+        templateUrl: 'templates/lists-type.html',
+        controller: 'ProspectsTypeCtrl as app'
       }
-    })
+    }
+  })
 
-    .state('tab.lists-decision', {
-      url: '/lists/:prospectId/decision',
-      views: {
-        'tab-lists': {
-          templateUrl: 'templates/lists-decision.html',
-          controller: 'ProspectsDecisionCtrl as app'
-        }
+  .state('tab.lists-decision', {
+    url: '/lists/:prospectId/decision',
+    views: {
+      'tab-lists': {
+        templateUrl: 'templates/lists-decision.html',
+        controller: 'ProspectsDecisionCtrl as app'
       }
-    })
+    }
+  })
+  
   .state('tab.export', {
     url: '/export',
     views: {
