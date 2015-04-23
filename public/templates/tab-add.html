@@ -1,5 +1,5 @@
 <ion-view view-title="ADD">
-  <ion-content class="padding">
+  <ion-content class="padding" has-bouncing="false" delegate-handle="containerScroll">
    
   <div class="list card">
   <div class="item item-divider">Main Contact</div>
@@ -7,7 +7,7 @@
 
     <label class="item item-input">
       <span class="input-label">First Name</span>
-      <input id="firstName" type="text" ng-model="app.person.firstname">
+      <input id="firstName" type="text" ng-click="scrollToKey(firstName)" ng-model="app.person.firstname">
     </label>
 
     <label class="item item-input">
