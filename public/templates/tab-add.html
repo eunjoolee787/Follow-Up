@@ -7,17 +7,17 @@
 
     <label class="item item-input">
       <span class="input-label">First Name</span>
-      <input type="text" ng-model="app.person.firstname">
+      <input id="firstName" type="text" ng-model="app.person.firstname">
     </label>
 
     <label class="item item-input">
       <span class="input-label">Last Name</span>
-      <input type="text" ng-model="app.person.lastname">
+      <input id="lastName" type="text" ng-model="app.person.lastname">
     </label>
 
     <label class="item item-input">
       <span class="input-label">Gender</span>
-      <input type="text" ng-model="app.person.gender">
+      <input id="Gender" type="text" ng-model="app.person.gender">
     </label>
 
     <label class="item item-input">
@@ -102,17 +102,17 @@
 
       <label class="item item-input">
         <span class="input-label">Initial Date</span>
-        <input type="date" ng-model="app.person.initialdate">
+        <input id="initialDate" type="date" ng-model="app.person.initialdate">
       </label>
 
       <label class="item item-input">
         <span class="input-label">Contact Person</span>
-        <input type="text" ng-model="app.person.contactperson">
+        <input id="contactPerson" type="text" ng-model="app.person.contactperson">
       </label>
 
       <label class="item item-input">
         <span class="input-label">Name of Event</span>
-        <input type="text" ng-model="app.person.nameofevent">
+        <input id="nameOfEvent" type="text" ng-model="app.person.nameofevent">
       </label>
 
       <ion-toggle  ng-model="app.person.previouslysaved" ng-change="app.toggle()">
