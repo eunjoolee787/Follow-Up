@@ -32,16 +32,8 @@ angular.module('starter.controllers', [])
   $scope.data = {};
 })
 
-.directive('focusOn', function() {
-   return function(scope, elem, attr) {
-      scope.$on(attr.focusOn, function(e) {
-          elem[0].focus();
-      });
-   };
-})
-
 //ADD
-.controller('DashCtrl', function($http, $scope, $ionicPopup, Prospects, $ionicScrollDelegate) {
+.controller('DashCtrl', function($http, $scope, $ionicPopup, Prospects) {
   var app = this;
   app.people = [];
   // $scope.prospect = {};
@@ -65,10 +57,6 @@ angular.module('starter.controllers', [])
     app.toggle = function () {
       console.log("toggle");
     }
-    $scope.scrollToKey = function (anchorName) {
-    $location.hash(anchorName);
-    $ionicScrollDelegate.$getByHandle('containerScroll').anchorScroll();
-  };
 })
 
    // // // A save dialog
