@@ -21,6 +21,26 @@
     </label>
 
     <label class="item item-input">
+      <span class="input-label">Age</span>
+      <input id="age" type="text" ng-click="scrollToKey(age)" ng-model="app.person.age">
+    </label>
+
+    <label class="item item-input">
+      <span class="input-label">Telephone</span>
+      <input id="telephone" type="tel" ng-click="scrollToKey(telephone)" ng-model="app.person.tel">
+    </label>
+
+    <label class="item item-input">
+      <span class="input-label">Initial Date</span>
+      <input id="initialDate" type="date" ng-click="scrollToKey(initialDate)" ng-model="app.person.initialdate">
+    </label>
+
+    <label class="item item-input">
+      <span class="input-label">Contact Person</span>
+      <input id="contactPerson" type="text" ng-click="scrollToKey(contactPerson)" ng-model="app.person.contactperson">
+    </label>
+
+    <label class="item item-input">
       <span class="input-label">Spouse First Name</span>
       <input id="spouseFirstName" type="text" ng-click="scrollToKey(spouseFirstName)" ng-model="app.person.firstnameSpouse">
     </label>
@@ -38,16 +58,6 @@
     <label class="item item-input">
       <span class="input-label">Birthday</span>
       <input id="birthday" type="date" ng-click="scrollToKey(birthday)" ng-model="app.person.birthday">
-    </label>
-
-    <label class="item item-input">
-      <span class="input-label">Age</span>
-      <input id="age" type="text" ng-click="scrollToKey(age)" ng-model="app.person.age">
-    </label>
-
-    <label class="item item-input">
-      <span class="input-label">Telephone</span>
-      <input id="telephone" type="tel" ng-click="scrollToKey(telephone)" ng-model="app.person.tel">
     </label>
 
     <label class="item item-input">
@@ -100,15 +110,6 @@
     <div class="item item-divider">General Information</div>
     <div class="item item-body">
 
-      <label class="item item-input">
-        <span class="input-label">Initial Date</span>
-        <input id="initialDate" type="date" ng-click="scrollToKey(initialDate)" ng-model="app.person.initialdate">
-      </label>
-
-      <label class="item item-input">
-        <span class="input-label">Contact Person</span>
-        <input id="contactPerson" type="text" ng-click="scrollToKey(contactPerson)" ng-model="app.person.contactperson">
-      </label>
 
       <label class="item item-input">
         <span class="input-label">Name of Event</span>
