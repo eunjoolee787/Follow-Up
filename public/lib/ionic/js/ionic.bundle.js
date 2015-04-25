@@ -3571,7 +3571,7 @@ ionic.keyboard = {
     document.removeEventListener('keydown', keyboardOnKeyDown);
 
     if( keyboardHasPlugin() ) {
-      cordova.plugins.Keyboard.close();
+      cordova.plugins.Keyboard.close(true);
     }
   },
 
