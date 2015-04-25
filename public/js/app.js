@@ -30,22 +30,29 @@ angular.module('starter', ['ionic',
 //   }, false);
 // })
 
-$ionicPlatform.ready(function() {
-      if(window.cordova ){
-         cordova.plugins.Keyboard.disableScroll(true);
-      }
-
-   }); 
-  },
-  onExit: function($ionicPlatform){
+.run(function($ionicPlatform, $rootScope, $state, Session) {
     $ionicPlatform.ready(function() {
-       if(window.cordova){
-         cordova.plugins.Keyboard.disableScroll(false);
-
+        if(window.cordova ){
+           cordova.plugins.Keyboard.disableScroll(true);
         }
-    });
-  }
-})
+
+     }); 
+    },
+    onExit: function($ionicPlatform){
+      $ionicPlatform.ready(function() {
+         if(window.cordova){
+           cordova.plugins.Keyboard.disableScroll(false);
+
+          }
+      });
+    }
+  })
+
+  document.addEventListener('deviceready', function () {
+      // cordova.plugins.email is now available
+    }, false);
+  })
+
 
 
 
