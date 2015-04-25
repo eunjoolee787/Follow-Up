@@ -56,7 +56,7 @@ angular.module('starter.controllers', [])
         .success(function (data) {
           app.people = data;
           console.log(data);
-          app.person = {};
+          app.person = {};//clear out person whenever log out
         })
         .error(function (error) {
           console.log(error);
