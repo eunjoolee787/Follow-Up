@@ -80,3 +80,8 @@ a.button.button-balanced.save:hover {
   background-color: yellow;
   color: black;
 }
+
+body .overflow-scroll {
+  overflow: auto;
+  overflow-x: hidden;
+}
