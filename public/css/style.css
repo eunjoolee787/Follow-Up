@@ -75,3 +75,7 @@ span.initial-date {
 .ion-view.view-title {
   font-size: 10px;
 }
+
+a.button.button-balanced.save:hover {
+  background-color: yellow;
+}
