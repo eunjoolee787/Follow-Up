@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
 })
 
 //ADD
-.controller('DashCtrl', function($http, $scope, $ionicPopup, Prospects, $ionicScrollDelegate, $on) {
+.controller('DashCtrl', function($http, $scope, $ionicPopup, Prospects, $ionicScrollDelegate, $on, $rootScope) {
   var app = this;
   app.people = [];
   // $scope.prospect = {};
