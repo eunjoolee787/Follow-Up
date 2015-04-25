@@ -19,23 +19,24 @@ angular.module('starter', ['ionic',
       // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
       cordova.plugins.Keyboard.disableScroll(true);
     }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
-  onExit: function($ionicPlatform) {
-    $ionicPlatform.ready(function() {
-      if(window.cordova) {
-        cordova.plugins.Keyboard.disableScroll(false);
+    // if (window.StatusBar) {
+    //   // org.apache.cordova.statusbar required
+    //   StatusBar.styleDefault();
+    onExit: function($ionicPlatform) {
+      $ionicPlatform.ready(function() {
+        if(window.cordova) {
+          cordova.plugins.Keyboard.disableScroll(false);
+        }
+      });
       }
-    })
-  }
+    }
+  })
+
 
 document.addEventListener('deviceready', function () {
     // cordova.plugins.email is now available
   }, false);
-})
+});
 
 
 
