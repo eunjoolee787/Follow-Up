@@ -11,48 +11,24 @@ angular.module('starter', ['ionic',
   'ngCordova', 
   'ui.router'])
 
-// .run(function($ionicPlatform, $rootScope, $state, Session) {
-//   $ionicPlatform.ready(function() {
-//     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-//     // for form inputs)
-//     if (window.cordova && window.cordova.plugins.Keyboard) {
-//       window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-//       window.cordova.plugins.Keyboard.disableScroll(true);
-//     }
-//     if (window.StatusBar) {
-//       // org.apache.cordova.statusbar required
-//       StatusBar.styleDefault();
-//     }
-//   });
-
-// document.addEventListener('deviceready', function () {
-//     // cordova.plugins.email is now available
-//   }, false);
-// })
-
 .run(function($ionicPlatform, $rootScope, $state, Session) {
-    $ionicPlatform.ready(function() {
-        if(window.cordova ){
-           cordova.plugins.Keyboard.disableScroll(true);
-        }
-
-     }); 
-    },
-    onExit: function($ionicPlatform){
-      $ionicPlatform.ready(function() {
-         if(window.cordova){
-           cordova.plugins.Keyboard.disableScroll(false);
-
-          }
-      });
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if (window.cordova && window.cordova.plugins.Keyboard) {
+      window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      window.cordova.plugins.Keyboard.disableScroll(true);
     }
-  })
+    if (window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+  });
 
-  document.addEventListener('deviceready', function () {
-      // cordova.plugins.email is now available
-    }, false);
-  })
-
+document.addEventListener('deviceready', function () {
+    // cordova.plugins.email is now available
+  }, false);
+})
 
 
 
