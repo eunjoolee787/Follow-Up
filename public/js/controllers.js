@@ -56,7 +56,7 @@ angular.module('starter.controllers', [])
         .success(function (data) {
           app.people = data;
           console.log(data);
-          $scope.app = "";
+          app.person = {};
         })
         .error(function (error) {
           console.log(error);
@@ -65,10 +65,10 @@ angular.module('starter.controllers', [])
     app.toggle = function () {
       console.log("toggle");
     }
-    $scope.scrollToKey = function (anchorName) {
-    $location.hash(anchorName);
-    $ionicScrollDelegate.$getByHandle('containerScroll').anchorScroll();
-  };
+  //   $scope.scrollToKey = function (anchorName) {
+  //   $location.hash(anchorName);
+  //   $ionicScrollDelegate.$getByHandle('containerScroll').anchorScroll();
+  // };
 })
 
    // // // A save dialog
@@ -146,7 +146,7 @@ angular.module('starter.controllers', [])
   $scope.prospects = [];
   Prospects.all()
   .success(function (data) {
-    console.log(data);
+    // console.log(data);
     $scope.prospects = data;
     return data;
   })
