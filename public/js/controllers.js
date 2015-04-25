@@ -65,10 +65,10 @@ angular.module('starter.controllers', [])
     app.toggle = function () {
       console.log("toggle");
     }
-  //   $scope.scrollToKey = function (anchorName) {
-  //   $location.hash(anchorName);
-  //   $ionicScrollDelegate.$getByHandle('containerScroll').anchorScroll();
-  // };
+    $scope.scrollToKey = function (anchorName) {
+    $location.hash(anchorName);
+    $ionicScrollDelegate.$getByHandle('containerScroll').anchorScroll();
+  };
 })
 
    // // // A save dialog
