@@ -3617,8 +3617,8 @@ function keyboardBrowserFocusIn(e) {
 
   document.addEventListener('keydown', keyboardOnKeyDown, false);
 
-  document.body.scrollTop = 0;
-  // document.body.querySelector('.scroll-content').scrollTop = 0;
+  // document.body.scrollTop = 0;
+  document.body.querySelector('.scroll-content').scrollTop = 0;
 
   keyboardActiveElement = e.target;
 
