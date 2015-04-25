@@ -1,8 +1,5 @@
 <ion-view view-title="LISTS">
-
   <ion-content>
-
-
 
     <ion-list>
 
@@ -21,6 +18,7 @@
 
 
 <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="prospect in prospects | filter:searchText" type="item-text-wrap" href="#/tab/lists/{{prospect._id}}">
+
 
       <!-- TO DO -->
 <!--         <img ng-src="{{chat.face}}">
@@ -43,8 +41,13 @@
 
 
       </ion-item>
-
+      
+      <!-- LOGOUT BUTTON -->
+  <div class="button-bar">
+    <a class="button button-positive" value="Log out" href="/logout"/>Logout</a>
+  </div>
     </ion-list>
+
     <!-- LOGOUT BUTTON -->
  <!--  <div class="button-bar">
     <a class="button button-positive" value="Log out" href="/logout"/>Logout</a>
