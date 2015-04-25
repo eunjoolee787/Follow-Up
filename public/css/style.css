@@ -78,4 +78,5 @@ span.initial-date {
 
 a.button.button-balanced.save:hover {
   background-color: yellow;
+  color: black;
 }
