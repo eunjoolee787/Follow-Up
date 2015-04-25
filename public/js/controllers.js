@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
 })
 
 //ADD
-.controller('DashCtrl', function($http, $scope, $ionicPopup, Prospects, $ionicScrollDelegate, $on, $rootScope) {
+.controller('DashCtrl', function($http, $scope, $ionicPopup, Prospects, $ionicScrollDelegate) {
   var app = this;
   app.people = [];
   // $scope.prospect = {};
@@ -65,13 +65,10 @@ angular.module('starter.controllers', [])
     app.toggle = function () {
       console.log("toggle");
     }
-  //   $scope.scrollToKey = function (anchorName) {
-  //   $location.hash(anchorName);
-  //   $ionicScrollDelegate.$getByHandle('containerScroll').anchorScroll();
-  // };
-  $scope.$on('$ionicView.loaded', function() {
-    $ionicScrollDelegate.scrollTo(0,$rootScope.top,false);
-  });
+    $scope.scrollToKey = function (anchorName) {
+    $location.hash(anchorName);
+    $ionicScrollDelegate.$getByHandle('containerScroll').anchorScroll();
+  };
 })
 
    // // // A save dialog
